@@ -1,0 +1,23 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/admin/messages/page": "/admin/messages",
+  "/admin/page": "/admin",
+  "/api/admin/messages/route": "/api/admin/messages",
+  "/api/contact/route": "/api/contact",
+  "/api/newsletter/route": "/api/newsletter",
+  "/case-studies/page": "/case-studies",
+  "/compliance/page": "/compliance",
+  "/contact/page": "/contact",
+  "/cookies/page": "/cookies",
+  "/disclaimer/page": "/disclaimer",
+  "/ethics/page": "/ethics",
+  "/page": "/",
+  "/privacy/page": "/privacy",
+  "/products/page": "/products",
+  "/security/page": "/security",
+  "/services/page": "/services",
+  "/technology/page": "/technology",
+  "/terms/page": "/terms"
+}
