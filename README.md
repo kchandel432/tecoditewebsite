@@ -16,6 +16,36 @@ It includes placeholder pages, components, and generated images for use on your 
    ```
 4. Open http://localhost:3000
 
+## Deployment
+
+This project is configured for deployment on Vercel:
+
+### Prerequisites
+- GitHub account
+- Vercel account
+- Neon PostgreSQL database (already configured)
+
+### Deploy Steps
+1. Push code to GitHub repository
+2. Import project in Vercel dashboard
+3. Set environment variables in Vercel:
+   ```
+   DATABASE_URL=postgresql://neondb_owner:npg_u6r2QvWhPyoG@ep-blue-river-a1acfy5h-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+   NEXTAUTH_SECRET=techodite-production-secret-2024
+   NEXTAUTH_URL=https://your-vercel-domain.vercel.app
+   ADMIN_USERNAME=admin
+   ADMIN_PASSWORD=secure-password-here
+   ```
+4. Deploy and enjoy!
+
+### Features
+- ✅ Contact form with database storage
+- ✅ Admin panel for message management
+- ✅ Responsive design with Tailwind CSS
+- ✅ Production-ready build
+- ✅ Security optimized
+
 Notes:
-- Tailwind is configured; to fully integrate theme utilities you may want to follow Tailwind setup docs.
-- This starter focuses on frontend; backend API can be added in `/backend` later.
+- Tailwind CSS is fully configured
+- Database schema auto-generates on build
+- Contact form saves to PostgreSQL (no email sending)
