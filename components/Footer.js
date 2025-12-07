@@ -49,23 +49,6 @@ export default function Footer() {
     { name: 'IoT Security', href: '/services/iot-security' },
   ]
 
-  const handleNewsletterSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      })
-
-      if (response.ok) {
-        alert('Thank you for subscribing!')
-        setEmail('')
-      }
-    } catch (error) {
-      console.error('Subscription error:', error)
-    }
-  }
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
@@ -147,31 +130,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Social Media */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-6">Stay Updated</h3>
-            <p className="text-gray-300 mb-4">
-              Subscribe to our newsletter for the latest in AI and cybersecurity research.
+            <h3 className="text-xl font-bold text-white mb-6">Connect With Us</h3>
+            <p className="text-gray-300 mb-6">
+              Follow us for the latest updates in AI and cybersecurity research.
             </p>
-
-            <form onSubmit={handleNewsletterSubmit} className="mb-6">
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-3 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
-                >
-                  <Send size={20} />
-                </button>
-              </div>
-            </form>
 
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Follow Us</h4>
