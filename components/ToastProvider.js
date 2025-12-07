@@ -1,6 +1,9 @@
 'use client'
 
+import { useToast } from '@/hooks/useToast'
 import { Toaster } from 'react-hot-toast'
+
+export { useToast }
 
 export default function ToastProvider({ children }) {
     return (

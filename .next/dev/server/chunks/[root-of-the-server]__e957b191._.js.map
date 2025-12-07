@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Hp/Desktop/techodite-starter/lib/mongodb.js"],"sourcesContent":["import mongoose from \"mongoose\";\r\n\r\nconst connectMongoDB = async () => {\r\n    if (mongoose.connections[0].readyState) return;\r\n    try {\r\n        await mongoose.connect(process.env.MONGODB_URI);\r\n        console.log(\"✅ MongoDB Connected\");\r\n    } catch (error) {\r\n        console.error(\"❌ MongoDB Connection Error:\", error);\r\n    }\r\n};\r\n\r\nexport default connectMongoDB;\r\n"],"names":[],"mappings":";;;;AAAA;;AAEA,MAAM,iBAAiB;IACnB,IAAI,oHAAQ,CAAC,WAAW,CAAC,EAAE,CAAC,UAAU,EAAE;IACxC,IAAI;QACA,MAAM,oHAAQ,CAAC,OAAO,CAAC,QAAQ,GAAG,CAAC,WAAW;QAC9C,QAAQ,GAAG,CAAC;IAChB,EAAE,OAAO,OAAO;QACZ,QAAQ,KAAK,CAAC,+BAA+B;IACjD;AACJ;uCAEe"}}]
+}
