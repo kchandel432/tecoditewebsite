@@ -1,6 +1,5 @@
-[00:00:02.867] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:03.762] Server  LOG      ✓ Ready in 3s
-[00:00:11.014] Server  LOG      ○ Compiling /products ...
-[00:00:15.675] Server  LOG        Reload env: .env
-[00:00:23.096] Server  WARN     ⚠ Blocked cross-origin request from 192.168.31.236 to /_next/* resource. To allow this, configure "allowedDevOrigins" in next.config
+[00:00:04.351] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:04.918] Server  LOG      ✓ Ready in 4s
+[00:00:10.457] Server  LOG      ○ Compiling /services ...
+[00:00:16.966] Server  WARN     ⚠ Blocked cross-origin request from 192.168.31.236 to /_next/* resource. To allow this, configure "allowedDevOrigins" in next.config
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
