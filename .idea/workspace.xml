@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="982dc3ad-3488-4e20-ba72-8449150ba285" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.next/dev/build-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/build-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/cache/images/5pzj_JAIRhYhCJXd9-tDNt_SwLvT4qDfINMvWcF_jlE/14400.1765101611213.Ai3zK7wOKSkxJANfhjcbPZikgh89E-pvKNlvBAjfeZA.Vy8iZmUzLTE5YTQwOWYyNDllIg.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/logs/next-development.log" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/logs/next-development.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/prerender-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/prerender-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/app-paths-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/app-paths-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/app/contact/page_client-reference-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/app/contact/page_client-reference-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/app/page_client-reference-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/app/page_client-reference-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/chunks/ssr/[root-of-the-server]__7def0791._.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/chunks/ssr/[root-of-the-server]__7def0791._.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/chunks/ssr/[root-of-the-server]__7def0791._.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/chunks/ssr/[root-of-the-server]__7def0791._.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/middleware-build-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/middleware-build-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/middleware-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/middleware-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/middleware/middleware-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/middleware/middleware-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/next-font-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/next-font-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/server/next-font-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/server/next-font-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/static/chunks/[root-of-the-server]__66cffb39._.css" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/static/chunks/[root-of-the-server]__66cffb39._.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/static/chunks/[root-of-the-server]__66cffb39._.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/static/chunks/[root-of-the-server]__66cffb39._.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/static/chunks/_65430c11._.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/static/chunks/_65430c11._.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/static/chunks/_65430c11._.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/static/chunks/_65430c11._.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/static/chunks/app_layout_78cdd4a3.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/static/chunks/app_layout_78cdd4a3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dev/trace" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dev/trace" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/contact/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/contact/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="36jmxoVMFJPGiiD2LH3ybdBym17" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="982dc3ad-3488-4e20-ba72-8449150ba285" name="Changes" comment="" />
+      <created>1765528603777</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765528603777</updated>
+    </task>
+    <servers />
+  </component>
+</project>

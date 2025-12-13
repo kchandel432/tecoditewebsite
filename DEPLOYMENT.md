@@ -105,6 +105,12 @@ npm start
 
 ## 📊 Performance Optimization
 
+### Gmail notes
+- If you use Gmail/Google Workspace for SMTP, you must either:
+   - enable 2-Step Verification and create an App Password, then set that value in `EMAIL_PASSWORD` or `EMAIL_APP_PASSWORD`; OR
+   - configure OAuth2 for Nodemailer (recommended for production). 
+   See: https://support.google.com/mail/?p=InvalidSecondFactor
+
 ### Images:
 - [x] All images optimized and in correct formats
 - [x] Proper alt texts added

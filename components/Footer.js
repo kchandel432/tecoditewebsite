@@ -7,7 +7,6 @@ import {
   Mail,
   MapPin,
   Phone,
-  Send,
   Twitter
 } from 'lucide-react'
 import Link from 'next/link'
@@ -19,8 +18,8 @@ export default function Footer() {
   const companyInfo = {
     name: 'Techodite Solutions Pvt Ltd',
     email: 'techodite@gmail.com',
-    phone: '+91-9876543210',
-    address: 'Cyber Tower, Sector 67, Noida, Uttar Pradesh 201301',
+    phone: '+91-9753089649',
+    address: 'Bazarpati Bhadarpur Burhanpur Madhya Pradesh',
     instagram: 'techoditesolutionpvt',
     linkedin: 'techodite-solutions',
     twitter: 'techodite_ai',

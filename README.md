@@ -30,8 +30,8 @@ This project is configured for deployment on Vercel:
 2. Import project in Vercel dashboard
 3. Set environment variables in Vercel:
    ```
-   DATABASE_URL=postgresql://neondb_owner:npg_u6r2QvWhPyoG@ep-blue-river-a1acfy5h-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
-   NEXTAUTH_SECRET=techodite-production-secret-2024
+   DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DBNAME?sslmode=require
+   NEXTAUTH_SECRET=generate-a-strong-random-string-here
    NEXTAUTH_URL=https://your-vercel-domain.vercel.app
    ADMIN_USERNAME=admin
    ADMIN_PASSWORD=secure-password-here

@@ -58,22 +58,16 @@
       "namedRegex": "^/admin/messages(?:/)?$"
     },
     {
-      "page": "/api/admin/messages",
-      "regex": "^/api/admin/messages(?:/)?$",
+      "page": "/api/chat",
+      "regex": "^/api/chat(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/api/admin/messages(?:/)?$"
+      "namedRegex": "^/api/chat(?:/)?$"
     },
     {
       "page": "/api/contact",
       "regex": "^/api/contact(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/contact(?:/)?$"
-    },
-    {
-      "page": "/api/newsletter",
-      "regex": "^/api/newsletter(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/api/newsletter(?:/)?$"
     },
     {
       "page": "/case-studies",

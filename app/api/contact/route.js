@@ -1,5 +1,11 @@
+
+
 import { NextResponse } from 'next/server';
 import validator from 'validator';
+import connectMongoDB from '../../../lib/mongodb';
+import Contact from '../../../models/Contact';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Rate limiting configuration
 const RATE_LIMIT = {
@@ -66,32 +72,88 @@ export async function POST(request) {
     const sanitizedEmail = validator.normalizeEmail(email);
     const sanitizedMessage = validator.escape(message);
 
-    // Email functionality removed - contact form only saves to database
 
-    // Store in database with Prisma
+    // Save to MongoDB first (so we have a reference id to include in emails)
     try {
-      const { PrismaClient } = await import('@prisma/client');
-      const prisma = new PrismaClient();
+      await connectMongoDB();
+    } catch (connErr) {
+      console.error('MongoDB connection failed:', connErr);
+      return NextResponse.json({ success: false, error: 'Database connection failed.' }, { status: 500 });
+    }
 
-      await prisma.contact.create({
-        data: {
-          name: sanitizedName,
-          email: sanitizedEmail,
-          subject,
-          message: sanitizedMessage,
-          ipAddress: ip,
-        },
+    let contactRecord;
+    try {
+      contactRecord = await Contact.create({
+        name: sanitizedName,
+        email: sanitizedEmail,
+        subject: subject || '',
+        message: sanitizedMessage,
+        ipAddress: ip,
       });
+    } catch (dbErr) {
+      console.error('Failed to save contact to DB:', dbErr);
+      return NextResponse.json({ success: false, error: 'Failed to save message.' }, { status: 500 });
+    }
 
-      console.log('✅ Contact saved to database');
-    } catch (dbError) {
-      console.error('❌ Database save error:', dbError);
-      // Continue even if database logging fails
+    // Contact form submission successful (saved to MongoDB)
+    const referenceId = contactRecord && contactRecord._id ? contactRecord._id.toString() : undefined;
+
+    // Attempt to forward the message to WhatsApp via Twilio if credentials are provided
+    let whatsappResult = { enabled: false };
+    const sid = process.env.TWILIO_ACCOUNT_SID;
+    const token = process.env.TWILIO_AUTH_TOKEN;
+    const from = process.env.TWILIO_WHATSAPP_FROM; // example: 'whatsapp:+1415XXXXXXX'
+    const to = process.env.TWILIO_WHATSAPP_TO; // example: 'whatsapp:+91XXXXXXXXXX'
+
+    if (sid && token && from && to) {
+      whatsappResult.enabled = true;
+      try {
+        const body = `New contact submission (ref: ${referenceId || 'N/A'})\nName: ${sanitizedName}\nEmail: ${sanitizedEmail}\nSubject: ${subject || ''}\nMessage: ${sanitizedMessage}`;
+
+        const url = `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`;
+        const params = new URLSearchParams();
+        params.append('To', to);
+        params.append('From', from);
+        params.append('Body', body);
+
+        const auth = Buffer.from(`${sid}:${token}`).toString('base64');
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: params.toString()
+        });
+
+        if (!res.ok) {
+          const text = await res.text();
+          console.error('Twilio WhatsApp send failed:', res.status, text);
+          whatsappResult.sent = false;
+          whatsappResult.error = text;
+        } else {
+          const json = await res.json();
+          whatsappResult.sent = true;
+          whatsappResult.sid = json.sid;
+        }
+      } catch (twErr) {
+        console.error('Twilio WhatsApp error:', twErr);
+        whatsappResult.sent = false;
+        whatsappResult.error = String(twErr);
+      }
+    } else {
+      // Fallback: provide a wa.me link the admin can open to manually send
+      const phone = (process.env.TWILIO_WHATSAPP_TO || '').replace('whatsapp:', '') || '';
+      const text = encodeURIComponent(`New contact (ref: ${referenceId || 'N/A'})\nName: ${sanitizedName}\nEmail: ${sanitizedEmail}\nSubject: ${subject || ''}\nMessage: ${sanitizedMessage}`);
+      whatsappResult.wa_me = phone ? `https://wa.me/${phone.replace('+','')}?text=${text}` : null;
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Message sent successfully',
+      message: 'Message saved successfully',
+      referenceId: referenceId,
+      data: { id: referenceId },
+      whatsapp: whatsappResult
     });
 
   } catch (error) {

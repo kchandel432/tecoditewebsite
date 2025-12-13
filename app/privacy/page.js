@@ -285,7 +285,7 @@ export default function PrivacyPolicyPage() {
                             <h3 className="text-lg font-bold text-white mb-4">Data Protection Officer</h3>
                             <p className="text-gray-300 mb-2">Dr. Sarah Chen</p>
                             <p className="text-gray-400">Email: dpo@techodite.com</p>
-                            <p className="text-gray-400">Phone: +91-9876543210</p>
+                            <p className="text-gray-400">Phone: +91-9753089649</p>
                         </div>
                         <div>
                             <h3 className="text-lg font-bold text-white mb-4">Company Information</h3>

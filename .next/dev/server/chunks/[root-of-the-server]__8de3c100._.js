@@ -139,11 +139,14 @@ __turbopack_context__.s([
     ()=>POST
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [app-route] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$nodemailer$2f$lib$2f$nodemailer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/nodemailer/lib/nodemailer.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$validator$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/validator/index.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$nodemailer$2f$lib$2f$nodemailer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/nodemailer/lib/nodemailer.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$dotenv$2f$lib$2f$main$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/dotenv/lib/main.js [app-route] (ecmascript)");
 ;
 ;
 ;
+;
+__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$dotenv$2f$lib$2f$main$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].config();
 // Rate limiting configuration
 const RATE_LIMIT = {
     windowMs: 15 * 60 * 1000,
@@ -207,113 +210,44 @@ async function POST(request) {
         const sanitizedName = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$validator$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].escape(name);
         const sanitizedEmail = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$validator$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].normalizeEmail(email);
         const sanitizedMessage = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$validator$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].escape(message);
-        // Create email transporter
+        // Send email using nodemailer
         const transporter = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$nodemailer$2f$lib$2f$nodemailer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].createTransport({
-            service: 'gmail',
+            host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+            port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT) : 465,
+            secure: true,
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_APP_PASSWORD
             }
         });
-        // Email to company
-        const companyMail = {
-            from: `"Website Contact Form" <${process.env.EMAIL_USER}>`,
-            to: 'techodite@gmail.com',
-            replyTo: sanitizedEmail,
-            subject: `[Website Contact] ${subject} - From: ${sanitizedName}`,
-            html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2563eb;">New Contact Form Submission</h2>
-          <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>From:</strong> ${sanitizedName}</p>
-            <p><strong>Email:</strong> ${sanitizedEmail}</p>
-            <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
-          </div>
-          <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #4b5563;">Message:</h3>
-            <p style="white-space: pre-wrap; line-height: 1.6;">${sanitizedMessage}</p>
-          </div>
-          <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e5e7eb;">
-            <p style="color: #6b7280; font-size: 14px;">
-              This email was sent from the Techodite website contact form.
-            </p>
-          </div>
-        </div>
-      `,
-            text: `
-New Contact Form Submission
-
-Subject: ${subject}
-From: ${sanitizedName}
-Email: ${sanitizedEmail}
-Date: ${new Date().toLocaleString()}
-
-Message:
-${message}
-
----
-This email was sent from the Techodite website contact form.
-      `
+        const mailOptions = {
+            from: process.env.EMAIL_FROM || sanitizedEmail,
+            to: process.env.COMPANY_EMAIL || 'company@example.com',
+            subject: subject ? `Contact Form: ${subject}` : 'Contact Form Submission',
+            text: `Name: ${sanitizedName}\nEmail: ${sanitizedEmail}\nMessage: ${sanitizedMessage}`
         };
-        // Optional: Send confirmation email to user
-        const userMail = {
-            from: `"Techodite Support" <${process.env.EMAIL_USER}>`,
-            to: sanitizedEmail,
-            subject: 'Thank you for contacting Techodite',
-            html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2563eb;">Thank You for Contacting Techodite</h2>
-          <p>Dear ${sanitizedName},</p>
-          <p>We have received your message and our team will get back to you within 24 hours.</p>
-          <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Your Message:</strong></p>
-            <p style="white-space: pre-wrap;">${sanitizedMessage}</p>
-          </div>
-          <p>If you have any urgent inquiries, please don't hesitate to email us directly at techodite@gmail.com</p>
-          <p>Best regards,<br>The Techodite Team</p>
-        </div>
-      `
-        };
-        // Send emails
-        await transporter.sendMail(companyMail);
-        await transporter.sendMail(userMail);
-        // Store in database with Prisma
         try {
-            const { PrismaClient } = await __turbopack_context__.A("[externals]/@prisma/client [external] (@prisma/client, cjs, async loader)");
-            const prisma = new PrismaClient();
-            await prisma.contact.create({
-                data: {
-                    name: sanitizedName,
-                    email: sanitizedEmail,
-                    subject,
-                    message: sanitizedMessage,
-                    ipAddress: ip
-                }
+            await transporter.sendMail(mailOptions);
+            console.log(`✅ Email sent to ${process.env.COMPANY_EMAIL || 'company@example.com'}`);
+        } catch (emailError) {
+            console.error('❌ Failed to send email:', emailError);
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                success: false,
+                error: 'Failed to send email.'
+            }, {
+                status: 500
             });
-            console.log('✅ Contact saved to database');
-        } catch (dbError) {
-            console.error('❌ Database save error:', dbError);
-        // Continue even if database logging fails
         }
+        // Contact form submission successful
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: true,
             message: 'Message sent successfully'
         });
     } catch (error) {
         console.error('Contact form error:', error);
-        // Check for specific email errors
-        if (error.code === 'EAUTH') {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                success: false,
-                error: 'Email configuration error. Please contact us directly at techodite@gmail.com'
-            }, {
-                status: 500
-            });
-        }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
-            error: 'Failed to send message. Please try again later.'
+            error: 'Failed to submit message. Please try again later.'
         }, {
             status: 500
         });

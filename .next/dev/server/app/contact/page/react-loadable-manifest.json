@@ -1,1 +1,11 @@
-{}
+{
+  "[project]/app/components/Map.jsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/app/components/Map.jsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_08e1de93._.js",
+      "static/chunks/app_components_Map_jsx_6ffd05e1._.js",
+      "static/chunks/node_modules_ba4a7cc4._.css",
+      "static/chunks/app_components_Map_jsx_fe076a98._.js"
+    ]
+  }
+}

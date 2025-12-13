@@ -1,3 +1,4 @@
+import ChatWidget from '@/components/ChatWidget'
 import CookieBanner from '@/components/CookieBanner'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
@@ -89,6 +90,7 @@ export default function RootLayout({ children }) {
                         <main>{children}</main>
                         <CookieBanner />
                         <Footer />
+                        <ChatWidget />
                     </ToastProvider>
                 </ThemeProvider>
             </body>

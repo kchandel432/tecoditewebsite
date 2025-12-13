@@ -16,9 +16,9 @@ export default function AboutPage() {
         name: 'Techodite Solutions Pvt Ltd',
         founded: 2023,
         employees: '50+',
-        location: 'Noida, Uttar Pradesh',
+        location: 'Bazarpati Bhadarpur Burhanpur Madhya Pradesh',
         email: 'techodite@gmail.com',
-        phone: '+91-9876543210',
+        phone: '+91-9753089649',
         mission: 'To pioneer secure and ethical artificial intelligence solutions that transform industries while protecting digital ecosystems.',
         vision: 'A world where AI-driven innovation and cybersecurity work in harmony to create a safer, more efficient digital future.'
     }

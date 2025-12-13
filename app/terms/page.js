@@ -349,7 +349,7 @@ export default function TermsAndConditionsPage() {
                             <p className="text-gray-300">
                                 Any disputes arising from these Terms shall first be attempted to be resolved through
                                 good-faith negotiations. If unresolved, disputes shall be submitted to binding arbitration
-                                in Noida, Uttar Pradesh, India.
+                                in Bazarpati Bhadarpur Burhanpur Madhya Pradesh, India.
                             </p>
                         </div>
                     </div>

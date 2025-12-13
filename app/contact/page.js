@@ -1,9 +1,19 @@
 'use client';
 
 import { useToast } from '@/components/ToastProvider';
-import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useMemo, useState } from 'react';
 
 export default function ContactPage() {
+    const Map = useMemo(
+        () =>
+            dynamic(() => import('@/app/components/Map'), {
+                loading: () => <p className="text-center py-10">Map is loading...</p>,
+                ssr: false,
+            }),
+        []
+    );
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -207,6 +217,15 @@ export default function ContactPage() {
                         </div>
                     </div>
                 </div>
+
+                {/* Map Section */}
+                <section className="my-12 max-w-6xl mx-auto">
+                    <h2 className="text-2xl font-bold mb-4">Our Location</h2>
+                    <div className="bg-gray-800 rounded-2xl p-4 shadow-2xl">
+                        {/* The map will only render in the browser */}
+                        <Map />
+                    </div>
+                </section>
             </div>
         </div>
     );
