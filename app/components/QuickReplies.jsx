@@ -17,8 +17,9 @@ export default function QuickReplies({ onSelect }) {
           style={{
             padding: "8px 12px",
             borderRadius: 20,
-            border: "1px solid #e5e5e5",
-            background: "#f7f7f7",
+            border: "1px solid rgba(37,99,235,0.15)",
+            background: "#EEF2FF", /* blue-50 */
+            color: "#1E40AF", /* blue-900 */
             cursor: "pointer",
           }}
         >

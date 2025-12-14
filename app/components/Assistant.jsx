@@ -18,11 +18,11 @@ export default function Assistant() {
   };
 
   return (
-    <div style={{ width: 360, border: '1px solid #e5e5e5', borderRadius: 8, overflow: 'hidden' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 12, background: '#fff' }}>
+    <div style={{ width: 360, border: '1px solid rgba(37,99,235,0.2)', borderRadius: 8, overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 12, background: '#2563EB', color: '#fff' }}>
         <strong>Assistant</strong>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setOpen(!open)} aria-label="toggle" style={{ cursor: 'pointer' }}>{open ? '—' : '+'}</button>
+          <button onClick={() => setOpen(!open)} aria-label="toggle" style={{ cursor: 'pointer', background: 'transparent', color: '#fff', border: 'none' }}>{open ? '—' : '+'}</button>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ export default function Assistant() {
         <div style={{ background: '#fafafa', minHeight: 200, display: 'flex', flexDirection: 'column' }}>
           <div style={{ flex: 1, padding: 8 }}>
             {/* placeholder for chat messages */}
-            <div style={{ color: '#666' }}>How can I help you? Try the quick actions below.</div>
+            <div style={{ color: '#1f2937' }}>How can I help you? Try the quick actions below.</div>
           </div>
 
           <QuickReplies onSelect={handleQuickReply} />

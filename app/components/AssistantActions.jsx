@@ -29,12 +29,12 @@ export default function AssistantActions() {
           padding: "8px 14px",
           borderRadius: 20,
           border: "none",
-          background: "#25D366",
+          background: "#2563EB", /* blue-600 */
           color: "#fff",
           cursor: "pointer",
         }}
       >
-        🟢 WhatsApp
+        💬 WhatsApp
       </button>
 
       <button
@@ -46,7 +46,7 @@ export default function AssistantActions() {
           padding: "8px 14px",
           borderRadius: 20,
           border: "none",
-          background: "#EA4335",
+          background: "#1D4ED8", /* blue-700 */
           color: "#fff",
           cursor: "pointer",
         }}
