@@ -37,9 +37,6 @@ export const authOptions = {
     }),
     // ...add other providers (Google, GitHub) here if desired...
   ],
-  session: {
-    strategy: 'database',
-  },
 };
 
 const handler = NextAuth(authOptions);
