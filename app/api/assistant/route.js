@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import ContactLead from '../../../../models/ContactLead';
+import ContactLead from '../../../models/ContactLead';
 
 async function ensureConnected() {
   const uri = process.env.MONGODB_URI || process.env.MONGODB || process.env.MONGO_URI;
