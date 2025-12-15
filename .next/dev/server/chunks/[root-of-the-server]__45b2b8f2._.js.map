@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Hp/Desktop/techodite-starter/models/Contact.js"],"sourcesContent":["import mongoose from \"mongoose\";\r\n\r\nconst contactSchema = new mongoose.Schema({\r\n    name: String,\r\n    email: String,\r\n    subject: String,\r\n    message: String,\r\n    ipAddress: String,\r\n    createdAt: { type: Date, default: Date.now },\r\n});\r\n\r\nconst Contact = mongoose.models.Contact || mongoose.model(\"Contact\", contactSchema);\r\nexport default Contact;\r\n"],"names":[],"mappings":";;;;AAAA;;AAEA,MAAM,gBAAgB,IAAI,oHAAQ,CAAC,MAAM,CAAC;IACtC,MAAM;IACN,OAAO;IACP,SAAS;IACT,SAAS;IACT,WAAW;IACX,WAAW;QAAE,MAAM;QAAM,SAAS,KAAK,GAAG;IAAC;AAC/C;AAEA,MAAM,UAAU,oHAAQ,CAAC,MAAM,CAAC,OAAO,IAAI,oHAAQ,CAAC,KAAK,CAAC,WAAW;uCACtD"}}]
-}
