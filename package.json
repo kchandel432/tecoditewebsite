@@ -13,6 +13,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.925.0",
     "@aws-sdk/lib-dynamodb": "^3.925.0",
+    "@emailjs/browser": "^4.4.1",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^5.22.0",

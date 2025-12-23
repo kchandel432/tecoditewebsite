@@ -21,7 +21,7 @@ export default function ContactPage() {
         subject: 'General Inquiry'
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const { showToast } = useToast();
+    const { showSuccess, showError } = useToast();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,13 +39,13 @@ export default function ContactPage() {
             const data = await response.json();
 
             if (data.success) {
-                showToast('Message sent successfully! We will get back to you soon.', 'success');
+                showSuccess('Message sent successfully! We will get back to you soon.');
                 setFormData({ name: '', email: '', message: '', subject: 'General Inquiry' });
             } else {
-                showToast(data.error || 'Failed to send message. Please try again.', 'error');
+                showError(data.error || 'Failed to send message. Please try again.');
             }
         } catch (error) {
-            showToast('Network error. Please check your connection.', 'error');
+            showError('Network error. Please check your connection.');
         } finally {
             setIsSubmitting(false);
         }
