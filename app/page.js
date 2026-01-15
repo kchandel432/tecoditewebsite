@@ -95,7 +95,7 @@ export default function HomePage() {
     const enterpriseStats = [
         { value: '99.99%', label: 'System Availability', subtext: 'Enterprise SLA', icon: <Clock className="text-indigo-400" size={20} /> },
         { value: '0', label: 'Security Breaches', subtext: 'Since inception', icon: <Shield className="text-emerald-400" size={20} /> },
-        { value: '50+', label: 'Global Enterprises', subtext: 'Fortune 500 clients', icon: <Briefcase className="text-sky-400" size={20} /> },
+        { value: '50+', label: 'Global Enterprises', subtext: '', icon: <Briefcase className="text-sky-400" size={20} /> },
         { value: 'ISO 27001', label: 'Certified', subtext: 'Information Security', icon: <Award className="text-amber-400" size={20} /> }
     ]
 
@@ -139,12 +139,13 @@ export default function HomePage() {
     ]
 
     const industries = [
-        { name: "Financial Services", icon: "🏦", count: 15 },
-        { name: "Healthcare", icon: "🏥", count: 12 },
-        { name: "Technology", icon: "💻", count: 18 },
-        { name: "Manufacturing", icon: "🏭", count: 9 },
-        { name: "Retail", icon: "🛒", count: 11 },
-        { name: "Government", icon: "🏛️", count: 7 }
+        { name: "Financial Services", icon: "🏦",   },
+        { name: "Healthcare", icon: "🏥",  },
+        { name: "Technology", icon: "💻",  },
+        { name: "Manufacturing", icon: "🏭",  },
+        { name: "Retail", icon: "🛒",  },
+        { name: "Government", icon: "🏛️", },
+        {name:"and many more"}
     ]
 
     const testimonials = [
