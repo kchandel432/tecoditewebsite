@@ -1,31 +1,25 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import { motion } from 'framer-motion'
 import {
-    TrendingUp,
-    Users,
-    Globe,
-    Shield,
-    Cpu,
-    Target,
-    Briefcase,
-    Mail,
-    Phone,
+    ArrowRight,
     Building,
-    Handshake,
-    Award,
-    Zap,
+    Calendar,
+    CheckCircle,
+    Cpu,
     DollarSign,
+    Globe,
+    Handshake,
+    Mail,
+    MapPin,
     PieChart,
     Rocket,
-    Calendar,
-    MapPin,
     Send,
-    CheckCircle,
-    ArrowRight
+    TrendingUp,
+    Users
 } from 'lucide-react'
+import { useState } from 'react'
 
 export default function InvestorsPage() {
     const [formData, setFormData] = useState({
@@ -169,39 +163,8 @@ export default function InvestorsPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950">
-            {/* Navigation */}
-            <nav className="sticky top-0 w-full bg-gray-900/95 backdrop-blur-xl border-b border-gray-800 z-50">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2 bg-gradient-to-r from-indigo-700 to-emerald-700 rounded-lg">
-                                <Cpu className="text-white" size={20} />
-                            </div>
-                            <div>
-                                <div className="text-lg font-bold text-white tracking-tight">TECHODITE</div>
-                                <div className="text-xs text-gray-400 tracking-wider">SOLUTIONS</div>
-                            </div>
-                        </div>
-                        
-                        <div className="hidden md:flex items-center gap-6">
-                            <a href="/" className="text-gray-400 hover:text-white text-sm transition-colors">Home</a>
-                            <a href="/about" className="text-gray-400 hover:text-white text-sm transition-colors">About</a>
-                            <a href="/investors" className="text-gray-400 hover:text-white text-sm transition-colors">Investors</a>
-                            <a href="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">Contact</a>
-                        </div>
-
-                        <a 
-                            href="/contact" 
-                            className="px-5 py-2.5 bg-gradient-to-r from-indigo-700 to-emerald-700 text-white text-sm font-semibold rounded-lg hover:shadow-xl hover:shadow-indigo-700/20 transition-all"
-                        >
-                            Contact Us
-                        </a>
-                    </div>
-                </div>
-            </nav>
-
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
+            <section className="relative pt-12 pb-20 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 via-transparent to-emerald-900/20" />
                 <div className="container mx-auto px-6 relative">
                     <motion.div
@@ -213,19 +176,19 @@ export default function InvestorsPage() {
                             <div className="w-2 h-2 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full animate-pulse"></div>
                             <span className="text-sm text-gray-300 tracking-wider">Investment Opportunity</span>
                         </div>
-                        
+
                         <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
                             <span className="block text-white mb-2">Building the Future of</span>
                             <span className="block bg-gradient-to-r from-indigo-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
                                 AI & Cybersecurity
                             </span>
                         </h1>
-                        
+
                         <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                            We are seeking strategic investors and business partners to scale our 
+                            We are seeking strategic investors and business partners to scale our
                             AI-driven cybersecurity solutions globally.
                         </p>
-                        
+
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <a
                                 href="#contact"
@@ -288,24 +251,24 @@ export default function InvestorsPage() {
                                     <p className="text-gray-400">Trust Building & Vision</p>
                                 </div>
                             </div>
-                            
+
                             <div className="space-y-6">
                                 <p className="text-gray-300 text-lg leading-relaxed">
-                                    Techodite Solutions is an emerging AI and cybersecurity company focused on 
-                                    developing advanced threat detection, AI-powered malware analysis, and 
+                                    Techodite Solutions is an emerging AI and cybersecurity company focused on
+                                    developing advanced threat detection, AI-powered malware analysis, and
                                     enterprise-grade security platforms for modern digital businesses.
                                 </p>
-                                
+
                                 <p className="text-gray-300 leading-relaxed">
-                                    Founded in 2023, we combine deep expertise in artificial intelligence with 
-                                    cutting-edge cybersecurity research to create solutions that protect 
+                                    Founded in 2023, we combine deep expertise in artificial intelligence with
+                                    cutting-edge cybersecurity research to create solutions that protect
                                     organizations from evolving digital threats while enabling secure innovation.
                                 </p>
-                                
+
                                 <div className="pt-6 border-t border-gray-800">
                                     <h3 className="text-xl font-bold text-white mb-4">Our Mission</h3>
                                     <p className="text-gray-300">
-                                        To pioneer intelligent security solutions that make advanced AI-powered 
+                                        To pioneer intelligent security solutions that make advanced AI-powered
                                         cybersecurity accessible and effective for organizations worldwide.
                                     </p>
                                 </div>
@@ -362,10 +325,10 @@ export default function InvestorsPage() {
                                         {product.status}
                                     </span>
                                 </div>
-                                
+
                                 <h3 className="text-xl font-bold text-white mb-3">{product.title}</h3>
                                 <p className="text-gray-400 text-sm mb-6">{product.description}</p>
-                                
+
                                 <div className="space-y-2">
                                     {product.features.map((feature, idx) => (
                                         <div key={idx} className="flex items-center gap-2">
@@ -432,13 +395,12 @@ export default function InvestorsPage() {
                                 className="bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 p-8 hover:border-gray-700 transition-all"
                             >
                                 <div className="flex items-center gap-3 mb-6">
-                                    <div className={`p-3 rounded-lg ${
-                                        index === 0 ? 'bg-indigo-900/30' : 
-                                        index === 1 ? 'bg-emerald-900/30' : 'bg-amber-900/30'
-                                    }`}>
+                                    <div className={`p-3 rounded-lg ${index === 0 ? 'bg-indigo-900/30' :
+                                            index === 1 ? 'bg-emerald-900/30' : 'bg-amber-900/30'
+                                        }`}>
                                         {index === 0 ? <DollarSign className="text-indigo-400" size={20} /> :
-                                         index === 1 ? <Handshake className="text-emerald-400" size={20} /> :
-                                         <Building className="text-amber-400" size={20} />}
+                                            index === 1 ? <Handshake className="text-emerald-400" size={20} /> :
+                                                <Building className="text-amber-400" size={20} />}
                                     </div>
                                     <div>
                                         <div className="text-2xl font-bold text-white">{type.type}</div>
@@ -447,7 +409,7 @@ export default function InvestorsPage() {
                                 </div>
 
                                 <p className="text-gray-300 mb-6">{type.description}</p>
-                                
+
                                 <div className="space-y-4">
                                     <div>
                                         <div className="text-sm font-semibold text-gray-400 mb-2">Ideal For</div>
@@ -459,7 +421,7 @@ export default function InvestorsPage() {
                                             ))}
                                         </div>
                                     </div>
-                                    
+
                                     <div>
                                         <div className="text-sm font-semibold text-gray-400 mb-2">Key Benefits</div>
                                         <div className="space-y-2">
@@ -491,7 +453,7 @@ export default function InvestorsPage() {
                     <div className="relative">
                         {/* Timeline line */}
                         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-indigo-500 via-emerald-500 to-transparent hidden lg:block"></div>
-                        
+
                         <div className="space-y-12 lg:space-y-0">
                             {roadmap.map((phase, index) => (
                                 <motion.div
@@ -560,28 +522,28 @@ export default function InvestorsPage() {
                                             <div className="text-3xl font-bold text-white">KC</div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="md:w-2/3">
                                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 rounded-full border border-gray-700 mb-4">
                                             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                                             <span className="text-sm text-gray-300">Founder & CEO</span>
                                         </div>
-                                        
+
                                         <h2 className="text-3xl font-bold text-white mb-2">Kapil Chandel</h2>
                                         <div className="text-lg text-emerald-400 mb-4">Founder & CEO – Techodite Solutions</div>
-                                        
+
                                         <div className="flex flex-wrap gap-2 mb-6">
                                             <span className="px-3 py-1 bg-indigo-900/30 text-indigo-400 text-sm rounded-full">AI Research</span>
                                             <span className="px-3 py-1 bg-emerald-900/30 text-emerald-400 text-sm rounded-full">Cybersecurity</span>
                                             <span className="px-3 py-1 bg-amber-900/30 text-amber-400 text-sm rounded-full">Product Engineering</span>
                                             <span className="px-3 py-1 bg-purple-900/30 text-purple-400 text-sm rounded-full">Entrepreneurship</span>
                                         </div>
-                                        
+
                                         <p className="text-gray-300 leading-relaxed">
-                                            With deep expertise in artificial intelligence and cybersecurity, 
-                                            Kapil leads Techodite's vision to create intelligent security solutions 
-                                            that protect enterprises while enabling innovation. His background in 
-                                            AI research and product development drives the company's technical 
+                                            With deep expertise in artificial intelligence and cybersecurity,
+                                            Kapil leads Techodite's vision to create intelligent security solutions
+                                            that protect enterprises while enabling innovation. His background in
+                                            AI research and product development drives the company's technical
                                             excellence and market-focused approach.
                                         </p>
                                     </div>
@@ -641,7 +603,7 @@ export default function InvestorsPage() {
                                                 placeholder="John Smith"
                                             />
                                         </div>
-                                        
+
                                         <div>
                                             <label className="block text-sm font-medium text-gray-400 mb-2">
                                                 Company *
@@ -673,7 +635,7 @@ export default function InvestorsPage() {
                                                 placeholder="john@company.com"
                                             />
                                         </div>
-                                        
+
                                         <div>
                                             <label className="block text-sm font-medium text-gray-400 mb-2">
                                                 Phone
@@ -708,8 +670,8 @@ export default function InvestorsPage() {
                                                         <div className="font-medium text-white">{type}</div>
                                                         <div className="text-xs text-gray-500">
                                                             {type === 'Investor' ? 'Funding & Investment' :
-                                                             type === 'Strategic Partner' ? 'Business Partnership' :
-                                                             'Enterprise Collaboration'}
+                                                                type === 'Strategic Partner' ? 'Business Partnership' :
+                                                                    'Enterprise Collaboration'}
                                                         </div>
                                                     </div>
                                                 </label>
@@ -747,7 +709,7 @@ export default function InvestorsPage() {
                                                     </a>
                                                 </div>
                                             </div>
-                                            
+
                                             <button
                                                 type="submit"
                                                 disabled={isSubmitting}
@@ -774,35 +736,6 @@ export default function InvestorsPage() {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="bg-gray-950 border-t border-gray-900 py-12">
-                <div className="container mx-auto px-6">
-                    <div className="text-center">
-                        <div className="flex items-center justify-center gap-3 mb-6">
-                            <div className="p-2 bg-gradient-to-r from-indigo-700 to-emerald-700 rounded-lg">
-                                <Cpu className="text-white" size={20} />
-                            </div>
-                            <div className="text-lg font-bold text-white">TECHODITE SOLUTIONS</div>
-                        </div>
-                        
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-500 mb-8">
-                            <a href="/" className="hover:text-white transition-colors">Home</a>
-                            <a href="/about" className="hover:text-white transition-colors">About</a>
-                            <a href="/investors" className="hover:text-white transition-colors">Investors</a>
-                            <a href="/contact" className="hover:text-white transition-colors">Contact</a>
-                        </div>
-                        
-                        <div className="border-t border-gray-900 pt-8">
-                            <p className="text-gray-600 text-sm">
-                                © 2024 Techodite Solutions Pvt Ltd. Bazarpati Bhadarpur, Burhanpur, Madhya Pradesh 450331
-                            </p>
-                            <p className="text-gray-600 text-sm mt-2">
-                                Contact: +91-9753089649 | Email: techodite@gmail.com
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     )
 }

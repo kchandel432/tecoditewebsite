@@ -5,9 +5,11 @@ const ContactLeadSchema = new mongoose.Schema({
   email: { type: String, required: true },
   phone: String,
   message: String,
+  company: String,
+  plan: String,
   purpose: {
     type: String,
-    enum: ['general', 'quote', 'support', 'partnership'],
+    enum: ['general', 'quote', 'support', 'partnership', 'signup'],
     default: 'general',
   },
   source: { type: String, default: 'ai_assistant' },

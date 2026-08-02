@@ -1,10 +1,9 @@
-
-
+import dotenv from 'dotenv';
 import { NextResponse } from 'next/server';
 import validator from 'validator';
 import connectMongoDB from '../../../lib/mongodb';
 import Contact from '../../../models/Contact';
-import dotenv from 'dotenv';
+
 dotenv.config();
 
 // Rate limiting configuration
@@ -23,7 +22,7 @@ export async function POST(request) {
 
     // Rate limiting check
     const userRequests = ipRequests.get(ip) || [];
-    const recentRequests = userRequests.filter(time => now - time < RATE_LIMIT.windowMs);
+    const recentRequests = userRequests.filter((time) => now - time < RATE_LIMIT.windowMs);
 
     if (recentRequests.length >= RATE_LIMIT.maxRequests) {
       return NextResponse.json(
@@ -40,31 +39,19 @@ export async function POST(request) {
 
     // Validation
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { success: false, error: 'All fields are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: 'All fields are required' }, { status: 400 });
     }
 
     if (!validator.isEmail(email)) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid email address' },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: 'Invalid email address' }, { status: 400 });
     }
 
     if (name.length > 100) {
-      return NextResponse.json(
-        { success: false, error: 'Name is too long' },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: 'Name is too long' }, { status: 400 });
     }
 
     if (message.length > 2000) {
-      return NextResponse.json(
-        { success: false, error: 'Message is too long' },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: 'Message is too long' }, { status: 400 });
     }
 
     // Sanitize inputs
@@ -72,13 +59,15 @@ export async function POST(request) {
     const sanitizedEmail = validator.normalizeEmail(email);
     const sanitizedMessage = validator.escape(message);
 
-
-    // Save to MongoDB first (so we have a reference id to include in emails)
+    // 1) Save to MongoDB (existing functionality)
     try {
       await connectMongoDB();
     } catch (connErr) {
       console.error('MongoDB connection failed:', connErr);
-      return NextResponse.json({ success: false, error: 'Database connection failed.' }, { status: 500 });
+      return NextResponse.json(
+        { success: false, error: 'Database connection failed.' },
+        { status: 500 }
+      );
     }
 
     let contactRecord;
@@ -92,70 +81,62 @@ export async function POST(request) {
       });
     } catch (dbErr) {
       console.error('Failed to save contact to DB:', dbErr);
-      return NextResponse.json({ success: false, error: 'Failed to save message.' }, { status: 500 });
+      return NextResponse.json(
+        { success: false, error: dbErr?.message || 'Failed to save message.' },
+        { status: 500 }
+      );
     }
 
-    // Contact form submission successful (saved to MongoDB)
-    const referenceId = contactRecord && contactRecord._id ? contactRecord._id.toString() : undefined;
+    const referenceId = contactRecord?._id ? contactRecord._id.toString() : undefined;
 
-    // Attempt to forward the message to WhatsApp via Twilio if credentials are provided
-    let whatsappResult = { enabled: false };
-    const sid = process.env.TWILIO_ACCOUNT_SID;
-    const token = process.env.TWILIO_AUTH_TOKEN;
-    const from = process.env.TWILIO_WHATSAPP_FROM; // example: 'whatsapp:+1415XXXXXXX'
-    const to = process.env.TWILIO_WHATSAPP_TO; // example: 'whatsapp:+91XXXXXXXXXX'
+    // 2) Fire-and-forget forward to Marketing OS webhook (no waiting)
+    const webhookUrl = process.env.MARKETING_OS_WEBHOOK_URL;
+    const payload = {
+      source: 'portal_contact',
+      referenceId,
+      name: sanitizedName,
+      email: sanitizedEmail,
+      subject: subject || '',
+      message: sanitizedMessage,
+      ipAddress: ip,
+      submittedAt: new Date().toISOString(),
+    };
 
-    if (sid && token && from && to) {
-      whatsappResult.enabled = true;
+    // fire-and-forget
+    (async () => {
+      if (!webhookUrl) {
+        console.warn('MARKETING_OS_WEBHOOK_URL not set; skipping webhook forwarding');
+        return;
+      }
+
       try {
-        const body = `New contact submission (ref: ${referenceId || 'N/A'})\nName: ${sanitizedName}\nEmail: ${sanitizedEmail}\nSubject: ${subject || ''}\nMessage: ${sanitizedMessage}`;
-
-        const url = `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`;
-        const params = new URLSearchParams();
-        params.append('To', to);
-        params.append('From', from);
-        params.append('Body', body);
-
-        const auth = Buffer.from(`${sid}:${token}`).toString('base64');
-        const res = await fetch(url, {
+        const res = await fetch(webhookUrl, {
           method: 'POST',
-          headers: {
-            'Authorization': `Basic ${auth}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: params.toString()
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         });
 
         if (!res.ok) {
-          const text = await res.text();
-          console.error('Twilio WhatsApp send failed:', res.status, text);
-          whatsappResult.sent = false;
-          whatsappResult.error = text;
-        } else {
-          const json = await res.json();
-          whatsappResult.sent = true;
-          whatsappResult.sid = json.sid;
+          const text = await res.text().catch(() => '');
+          console.error('Marketing OS webhook failed:', res.status, text);
+          return;
         }
-      } catch (twErr) {
-        console.error('Twilio WhatsApp error:', twErr);
-        whatsappResult.sent = false;
-        whatsappResult.error = String(twErr);
-      }
-    } else {
-      // Fallback: provide a wa.me link the admin can open to manually send
-      const phone = (process.env.TWILIO_WHATSAPP_TO || '').replace('whatsapp:', '') || '';
-      const text = encodeURIComponent(`New contact (ref: ${referenceId || 'N/A'})\nName: ${sanitizedName}\nEmail: ${sanitizedEmail}\nSubject: ${subject || ''}\nMessage: ${sanitizedMessage}`);
-      whatsappResult.wa_me = phone ? `https://wa.me/${phone.replace('+','')}?text=${text}` : null;
-    }
 
+        console.log('Marketing OS webhook forwarded successfully:', referenceId);
+      } catch (err) {
+        console.error('Marketing OS webhook request failed:', err);
+      }
+    })();
+
+    // 3) Return immediately after DB save
     return NextResponse.json({
       success: true,
-      message: 'Message saved successfully',
-      referenceId: referenceId,
-      data: { id: referenceId },
-      whatsapp: whatsappResult
+      message: 'Contact saved. Our team will reach out.',
+      webhook: {
+        forwarded: !!webhookUrl,
+        error: undefined,
+      },
     });
-
   } catch (error) {
     console.error('Contact form error:', error);
 
@@ -165,3 +146,4 @@ export async function POST(request) {
     );
   }
 }
+

@@ -20,6 +20,8 @@ export async function POST(req) {
       message: data.message || '',
       purpose: data.purpose || 'general',
       source: data.source || 'assistant',
+      company: data.company || '',
+      plan: data.plan || '',
     });
 
     return new Response(JSON.stringify({ success: true, leadId: lead._id }), {

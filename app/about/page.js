@@ -1,26 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
-import { 
-    Shield, 
-    Cpu, 
-    Cloud, 
-    Lock, 
-    Brain, 
-    BarChart3,
+import {
     ArrowRight,
+    BarChart3,
+    Brain,
     CheckCircle,
-    Users,
+    Cloud,
+    Cpu,
     Globe,
+    Lock,
     Server,
-    Code,
-    Sparkles,
-    Zap,
-    Eye,
-    ShieldCheck
+    Shield,
+    ShieldCheck,
+    Users,
+    Zap
 } from 'lucide-react'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export default function HomePage() {
     const [activeTab, setActiveTab] = useState('ai')
@@ -116,37 +113,8 @@ export default function HomePage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-            {/* Navigation */}
-            <nav className="fixed top-0 w-full bg-slate-900/90 backdrop-blur-xl border-b border-slate-800 z-50">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <div className="p-2 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-lg">
-                                <Sparkles className="text-white" size={20} />
-                            </div>
-                            <span className="text-xl font-bold text-white">Techodite</span>
-                            <span className="text-sm text-slate-400">Solutions</span>
-                        </div>
-                        
-                        <div className="hidden md:flex items-center gap-8">
-                            <a href="#solutions" className="text-slate-300 hover:text-white transition-colors">Solutions</a>
-                            <a href="#technologies" className="text-slate-300 hover:text-white transition-colors">Technologies</a>
-                            <a href="#case-studies" className="text-slate-300 hover:text-white transition-colors">Case Studies</a>
-                            <a href="#contact" className="text-slate-300 hover:text-white transition-colors">Contact</a>
-                        </div>
-
-                        <Link 
-                            href="/contact"
-                            className="px-6 py-2 bg-gradient-to-r from-blue-700 to-emerald-700 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-blue-700/20 transition-all"
-                        >
-                            Get Started
-                        </Link>
-                    </div>
-                </div>
-            </nav>
-
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
+            <section className="relative pt-12 pb-20 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-emerald-900/10" />
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -159,20 +127,20 @@ export default function HomePage() {
                                 <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
                                 <span className="text-sm text-slate-300">Enterprise AI & Cybersecurity</span>
                             </div>
-                            
+
                             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
                                 <span className="block text-white">Secure AI</span>
                                 <span className="block bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
                                     For The Enterprise
                                 </span>
                             </h1>
-                            
+
                             <p className="text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl">
-                                We deliver cutting-edge artificial intelligence solutions protected by 
-                                enterprise-grade security, helping organizations innovate safely in 
+                                We deliver cutting-edge artificial intelligence solutions protected by
+                                enterprise-grade security, helping organizations innovate safely in
                                 the digital age.
                             </p>
-                            
+
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Link
                                     href="/contact"
@@ -279,8 +247,8 @@ export default function HomePage() {
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
                                 className={`px-6 py-3 rounded-lg font-medium transition-all ${activeTab === tab
-                                        ? 'bg-gradient-to-r from-blue-700 to-emerald-700 text-white'
-                                        : 'bg-slate-800/50 text-slate-300 hover:bg-slate-800'
+                                    ? 'bg-gradient-to-r from-blue-700 to-emerald-700 text-white'
+                                    : 'bg-slate-800/50 text-slate-300 hover:bg-slate-800'
                                     }`}
                             >
                                 {tab === 'ai' && 'AI & Machine Learning'}
@@ -413,7 +381,7 @@ export default function HomePage() {
                         <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
                             Schedule a consultation with our experts to discuss your AI and security needs.
                         </p>
-                        
+
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
                                 href="/contact"
@@ -432,60 +400,6 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="bg-slate-950 border-t border-slate-800 py-12">
-                <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div>
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="p-2 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-lg">
-                                    <Sparkles className="text-white" size={20} />
-                                </div>
-                                <span className="text-xl font-bold text-white">Techodite</span>
-                            </div>
-                            <p className="text-slate-400 text-sm">
-                                Enterprise AI and cybersecurity solutions for the digital age.
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <h3 className="text-white font-semibold mb-4">Solutions</h3>
-                            <ul className="space-y-2">
-                                <li><a href="#" className="text-slate-400 hover:text-white text-sm">AI & ML</a></li>
-                                <li><a href="#" className="text-slate-400 hover:text-white text-sm">Cybersecurity</a></li>
-                                <li><a href="#" className="text-slate-400 hover:text-white text-sm">Cloud Security</a></li>
-                                <li><a href="#" className="text-slate-400 hover:text-white text-sm">Consulting</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 className="text-white font-semibold mb-4">Company</h3>
-                            <ul className="space-y-2">
-                                <li><Link href="/about" className="text-slate-400 hover:text-white text-sm">About Us</Link></li>
-                                <li><a href="#" className="text-slate-400 hover:text-white text-sm">Careers</a></li>
-                                <li><a href="#" className="text-slate-400 hover:text-white text-sm">Blog</a></li>
-                                <li><a href="#" className="text-slate-400 hover:text-white text-sm">Contact</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 className="text-white font-semibold mb-4">Contact</h3>
-                            <ul className="space-y-2">
-                                <li className="text-slate-400 text-sm">contact@techodite.com</li>
-                                <li className="text-slate-400 text-sm">+91-9753089649</li>
-                                <li className="text-slate-400 text-sm">Bazarpati Bhadarpur, Burhanpur</li>
-                                <li className="text-slate-400 text-sm">Madhya Pradesh, India</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div className="border-t border-slate-800 mt-8 pt-8 text-center">
-                        <p className="text-slate-500 text-sm">
-                            © 2024 Techodite Solutions Pvt Ltd. All rights reserved.
-                        </p>
-                    </div>
-                </div>
-            </footer>
         </div>
     )
 }

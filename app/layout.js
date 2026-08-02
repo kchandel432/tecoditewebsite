@@ -87,7 +87,8 @@ export default function RootLayout({ children }) {
                 <ThemeProvider>
                     <ToastProvider>
                         <Navbar />
-                        <main>{children}</main>
+                        {/* Offset content for the fixed top navbar */}
+                        <main className="pt-24">{children}</main>
                         <CookieBanner />
                         <Footer />
                         <ChatWidget />

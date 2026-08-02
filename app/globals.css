@@ -3,22 +3,29 @@
 @tailwind utilities;
 
 :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 15, 23, 42;
-    --background-end-rgb: 30, 41, 59;
+    /* Professional “midnight” palette (dark mode default) */
+    --foreground-rgb: 248, 250, 252; /* slate-50 */
+    --background-start-rgb: 2, 6, 23; /* slate-950 */
+    --background-end-rgb: 15, 23, 42; /* slate-900 */
+
+    /* Brand accents */
+    --brand-cyan: 34, 211, 238; /* cyan-400 */
+    --brand-indigo: 99, 102, 241; /* indigo-500 */
 }
 
 .light {
-    --foreground-rgb: 30, 41, 59;
-    --background-start-rgb: 248, 250, 252;
-    --background-end-rgb: 226, 232, 240;
+    /* Clean, professional light mode */
+    --foreground-rgb: 15, 23, 42; /* slate-900 */
+    --background-start-rgb: 248, 250, 252; /* slate-50 */
+    --background-end-rgb: 226, 232, 240; /* slate-200 */
 }
 
 body {
     color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom,
-            transparent,
-            rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(var(--brand-indigo), 0.14), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(var(--brand-cyan), 0.10), transparent 55%),
+        linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
 }
 
 @layer utilities {
@@ -47,6 +54,13 @@ body {
 
     .light .hover\:bg-gray-700:hover {
         background-color: #e2e8f0;
+    }
+
+    /* Optional helper for consistent brand glow */
+    .brand-glow {
+        box-shadow:
+            0 0 0 1px rgba(148, 163, 184, 0.15),
+            0 10px 30px rgba(0, 0, 0, 0.35);
     }
 }
 
@@ -90,14 +104,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a202c;
+    background: #0b1220;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #4a5568;
+    background: #334155; /* slate-700 */
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #718096;
+    background: #475569; /* slate-600 */
 }
