@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { BsRobot } from 'react-icons/bs';
-import { FiMessageCircle, FiSend, FiX } from 'react-icons/fi';
+import { MessageSquare, Send, X } from 'lucide-react';
 
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
@@ -64,30 +63,32 @@ export default function ChatWidget() {
             {/* Chat Button */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50 flex items-center justify-center"
+                className="fixed bottom-6 right-6 z-50 flex w-10 h-10 items-center justify-center rounded-full bg-brand-600 text-white shadow-card hover:bg-brand-700 transition-colors"
                 aria-label="Open chat"
             >
-                <FiMessageCircle size={24} />
+                <MessageSquare size={20} strokeWidth={1.5} />
             </button>
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="fixed bottom-20 right-6 w-80 md:w-96 h-[500px] bg-white rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
+                <div className="fixed bottom-20 right-6 z-50 w-full md:w-96 max-w-xs flex h-[500px] flex-col rounded-xl border border-ink-200 dark:border-ink-700 shadow-card bg-white dark:bg-ink-800">
                     {/* Header */}
-                    <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
-                        <div className="flex items-center gap-2">
-                            <BsRobot size={24} />
+                    <div className="flex items-center justify-between p-4 border-b border-ink-100 dark:border-ink-800">
+                        <div className="flex items-center gap-3">
+                            <div className="p-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 flex-shrink-0">
+                                <MessageSquare size={20} strokeWidth={1.5} />
+                            </div>
                             <div>
-                                <h3 className="font-semibold">Techodite AI Assistant</h3>
-                                <p className="text-xs opacity-80">Online • Ready to help</p>
+                                <h3 className="text-sm font-bold text-ink-900 dark:text-white">Techodite assistant</h3>
+                                <p className="text-xs text-ink-500 dark:text-ink-300">Online &bull; Ready to help</p>
                             </div>
                         </div>
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="hover:bg-white/20 p-1 rounded-full transition"
+                            className="p-1.5 rounded-lg text-ink-400 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-ink-800 transition-colors"
                             aria-label="Close chat"
                         >
-                            <FiX size={20} />
+                            <X size={20} strokeWidth={1.5} />
                         </button>
                     </div>
 
@@ -99,14 +100,14 @@ export default function ChatWidget() {
                                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
                                 <div
-                                    className={`max-w-[80%] rounded-2xl p-3 ${msg.role === 'user'
-                                        ? 'bg-blue-500 text-white rounded-br-none'
-                                        : 'bg-gray-100 text-gray-800 rounded-bl-none'
+                                    className={`max-w-[85%] rounded-xl p-3 ${msg.role === 'user'
+                                        ? 'bg-brand-600 text-white'
+                                        : 'bg-ink-100 dark:bg-ink-800 text-ink-900 dark:text-white'
                                         }`}
                                 >
                                     <div className="flex items-center gap-2 mb-1">
                                         {msg.role === 'assistant' && (
-                                            <BsRobot className="text-blue-500" size={14} />
+                                            <MessageSquare className="text-brand-600 dark:text-brand-400" size={14} strokeWidth={1.5} />
                                         )}
                                         <span className="text-xs font-semibold">
                                             {msg.role === 'user' ? 'You' : 'AI Assistant'}
@@ -118,16 +119,12 @@ export default function ChatWidget() {
                         ))}
                         {isLoading && (
                             <div className="flex justify-start">
-                                <div className="bg-gray-100 text-gray-800 rounded-2xl rounded-bl-none p-3">
+                                <div className="bg-ink-100 dark:bg-ink-800 text-ink-900 dark:text-white rounded-xl p-3">
                                     <div className="flex items-center gap-2">
-                                        <BsRobot className="text-blue-500 animate-pulse" />
+                                        <MessageSquare className="text-brand-600 dark:text-brand-400" size={14} strokeWidth={1.5} />
                                         <span className="text-xs font-semibold">AI Assistant</span>
                                     </div>
-                                    <div className="flex gap-1 mt-2">
-                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
-                                    </div>
+                                    <p className="text-xs text-ink-500 dark:text-ink-400 mt-2">Typing&hellip;</p>
                                 </div>
                             </div>
                         )}
@@ -135,27 +132,27 @@ export default function ChatWidget() {
                     </div>
 
                     {/* Input Area */}
-                    <div className="p-4 border-t">
+                    <div className="p-4 border-t border-ink-100 dark:border-ink-800">
                         <div className="relative">
                             <textarea
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={handleKeyDown}
-                                placeholder="Type your message here..."
-                                className="w-full border border-gray-300 rounded-lg p-3 pr-12 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Type your message here…"
+                                className="w-full px-4 py-3 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800 text-ink-900 dark:text-white pr-12 resize-none focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                                 rows="2"
                                 disabled={isLoading}
                             />
                             <button
                                 onClick={handleSend}
                                 disabled={isLoading || !input.trim()}
-                                className="absolute right-2 bottom-2 bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                                className="absolute right-3 bottom-3 rounded-lg bg-brand-600 text-white px-3 py-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                 aria-label="Send message"
                             >
-                                <FiSend size={18} />
+                                <Send size={18} strokeWidth={1.5} />
                             </button>
                         </div>
-                        <p className="text-xs text-gray-500 mt-2 text-center">
+                        <p className="text-xs text-ink-500 dark:text-ink-400 mt-2 text-center">
                             AI assistant can help with services, pricing, and technical queries
                         </p>
                     </div>

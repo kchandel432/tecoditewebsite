@@ -12,8 +12,10 @@ import {
     RefreshCw,
     Shield,
     TrendingUp,
-    Users
+    Users,
 } from 'lucide-react'
+import { Card } from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
 import { useEffect, useState } from 'react'
 
 export default function ComplianceDashboard() {
@@ -38,9 +40,7 @@ export default function ComplianceDashboard() {
     })
 
     useEffect(() => {
-        // Simulate fetching compliance data
         const fetchComplianceData = async () => {
-            // In a real app, this would be an API call
             setTimeout(() => {
                 setComplianceData(prev => ({
                     ...prev,
@@ -50,9 +50,8 @@ export default function ComplianceDashboard() {
         }
 
         fetchComplianceData()
-        const interval = setInterval(fetchComplianceData, 60000) // Update every minute
+        const interval = setInterval(fetchComplianceData, 60000)
 
-        // Simulate data requests
         const mockRequests = [
             { id: 1, type: 'access', user: 'user@example.com', status: 'completed', date: '2024-01-15' },
             { id: 2, type: 'deletion', user: 'user2@example.com', status: 'pending', date: '2024-01-16' },
@@ -65,7 +64,6 @@ export default function ComplianceDashboard() {
     }, [])
 
     const runComplianceCheck = () => {
-        // Simulate running compliance checks
         setComplianceData(prev => ({
             ...prev,
             lastCheck: new Date().toISOString(),
@@ -90,303 +88,262 @@ export default function ComplianceDashboard() {
         a.click()
     }
 
-    const getStatusColor = (status) => {
-        switch (status) {
-            case 'compliant':
-            case 'certified':
-                return 'text-green-400 bg-green-900/30'
-            case 'pending':
-                return 'text-yellow-400 bg-yellow-900/30'
-            case 'non-compliant':
-                return 'text-red-400 bg-red-900/30'
-            default:
-                return 'text-gray-400 bg-gray-900/30'
-        }
+    const statusProps = {
+        compliant: { label: 'Compliant', color: 'text-brand-700 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20 border border-brand-100 dark:border-brand-800/30' },
+        certified: { label: 'Certified', color: 'text-brand-700 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20 border border-brand-100 dark:border-brand-800/30' },
+        pending: { label: 'Pending', color: 'text-ink-500 bg-ink-100 dark:bg-ink-800/30 border border-ink-200 dark:border-ink-700' },
+        'non-compliant': { label: 'Non-compliant', color: 'text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800/30' },
     }
 
-    const getStatusIcon = (status) => {
+    const statusIcon = (status) => {
         switch (status) {
             case 'compliant':
             case 'certified':
-                return <CheckCircle className="text-green-400" size={20} />
+                return <CheckCircle className="text-ink-600 dark:text-ink-400" size={20} strokeWidth={1.5} />
             case 'pending':
-                return <Clock className="text-yellow-400" size={20} />
+                return <Clock className="text-ink-500 dark:text-ink-400" size={20} strokeWidth={1.5} />
             default:
-                return <AlertCircle className="text-red-400" size={20} />
+                return <AlertCircle className="text-ink-600 dark:text-ink-400" size={20} strokeWidth={1.5} />
         }
     }
 
     return (
-        <div className="space-y-6">
-            {/* Header */}
+        <div className="space-y-10">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                    <div className="p-3 bg-gradient-to-r from-blue-900/30 to-cyan-900/30 rounded-xl">
-                        <Shield className="text-blue-400" size={24} />
+                    <div className="p-3 bg-brand-50 rounded-xl border border-brand-100 dark:bg-brand-900/20 dark:border-brand-800/30">
+                        <Shield className="text-brand-600" size={24} strokeWidth={1.5} />
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-white">Compliance Dashboard</h2>
-                        <p className="text-gray-400">Real-time compliance monitoring and management</p>
+                        <h2 className="text-xl font-bold text-ink-900 dark:text-white">Compliance dashboard</h2>
+                        <p className="text-sm text-ink-500 dark:text-ink-300">Real-time compliance monitoring and management</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
-                    <button
-                        onClick={runComplianceCheck}
-                        className="px-4 py-2 border border-cyan-400 text-cyan-400 rounded-lg hover:bg-cyan-400/10 transition-colors flex items-center gap-2"
-                    >
-                        <RefreshCw size={18} />
-                        <span>Run Check</span>
-                    </button>
-                    <button
-                        onClick={generateComplianceReport}
-                        className="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-700 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/30 transition-all flex items-center gap-2"
-                    >
-                        <Download size={18} />
-                        <span>Export Report</span>
-                    </button>
+                    <Button variant="secondary" onClick={runComplianceCheck} size="sm">
+                        <RefreshCw size={16} strokeWidth={1.5} />
+                        <span className="ml-2">Run Check</span>
+                    </Button>
+                    <Button onClick={generateComplianceReport} size="sm">
+                        <Download size={16} strokeWidth={1.5} />
+                        <span className="ml-2">Export Report</span>
+                    </Button>
                 </div>
             </div>
 
-            {/* Compliance Status Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Object.entries(complianceData).map(([regulation, data]) => (
-                    <div key={regulation} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl border border-gray-700 p-6">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center gap-3">
-                                <div className="p-2 bg-gray-900/50 rounded-lg">
-                                    {regulation.includes('iso') || regulation.includes('soc') ? (
-                                        <FileText className="text-blue-400" size={20} />
-                                    ) : (
-                                        <Globe className="text-cyan-400" size={20} />
-                                    )}
+                {Object.entries(complianceData).map(([regulation, data]) => {
+                    const props = statusProps[data.status] || statusProps.pending
+                    return (
+                        <Card key={regulation}>
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-ink-50 dark:bg-ink-800/50 rounded-lg border border-ink-200 dark:border-ink-700">
+                                        {regulation.includes('iso') || regulation.includes('soc') ? (
+                                            <FileText className="text-brand-600 dark:text-brand-400" size={20} strokeWidth={1.5} />
+                                        ) : (
+                                            <Globe className="text-ink-600 dark:text-ink-400" size={20} strokeWidth={1.5} />
+                                        )}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-ink-900 dark:text-white">
+                                            {regulation.toUpperCase()}
+                                            {regulation.includes('iso') && ' Certification'}
+                                            {regulation.includes('soc') && ' Report'}
+                                        </h3>
+                                        <p className="text-xs text-ink-500 dark:text-ink-300">
+                                            {regulation === 'gdpr' && 'General Data Protection Regulation'}
+                                            {regulation === 'ccpa' && 'California Consumer Privacy Act'}
+                                            {regulation === 'lgpd' && 'Brazilian General Data Protection Law'}
+                                            {regulation === 'pipeda' && 'Personal Information Protection Act'}
+                                            {regulation === 'iso27001' && 'Information Security Management'}
+                                            {regulation === 'soc2' && 'Service Organization Controls'}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="font-bold text-white">
-                                        {regulation.toUpperCase()}
-                                        {regulation.includes('iso') && ' Certification'}
-                                        {regulation.includes('soc') && ' Report'}
-                                    </h3>
-                                    <p className="text-sm text-gray-400">
-                                        {regulation === 'gdpr' && 'General Data Protection Regulation'}
-                                        {regulation === 'ccpa' && 'California Consumer Privacy Act'}
-                                        {regulation === 'lgpd' && 'Brazilian General Data Protection Law'}
-                                        {regulation === 'pipeda' && 'Personal Information Protection Act'}
-                                        {regulation === 'iso27001' && 'Information Security Management'}
-                                        {regulation === 'soc2' && 'Service Organization Controls'}
-                                    </p>
-                                </div>
-                            </div>
-                            <span className={`px-3 py-1 rounded-full text-xs flex items-center gap-1 ${getStatusColor(data.status)}`}>
-                                {getStatusIcon(data.status)}
-                                <span className="capitalize">{data.status}</span>
-                            </span>
-                        </div>
-
-                        <div className="space-y-3">
-                            <div className="flex justify-between text-sm">
-                                <span className="text-gray-400">Last Check</span>
-                                <span className="text-gray-300">
-                                    {new Date(data.lastCheck).toLocaleDateString()}
+                                <span className={`px-3 py-1 rounded-lg text-xs flex items-center gap-1 ${props.color}`}>
+                                    {statusIcon(data.status)}
+                                    <span>{props.label}</span>
                                 </span>
                             </div>
 
-                            {'issues' in data && (
+                            <div className="space-y-3">
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-gray-400">Open Issues</span>
-                                    <span className={data.issues === 0 ? 'text-green-400' : 'text-red-400'}>
-                                        {data.issues} issue{data.issues !== 1 ? 's' : ''}
-                                    </span>
+                                    <span className="text-ink-500 dark:text-ink-400">Last Check</span>
+                                    <span className="text-ink-900 dark:text-white">{new Date(data.lastCheck).toLocaleDateString()}</span>
                                 </div>
-                            )}
 
-                            {'expires' in data && (
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-gray-400">Valid Until</span>
-                                    <span className="text-cyan-400">{data.expires}</span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                ))}
+                                {'issues' in data && (
+                                    <div className="flex justify-between text-sm">
+                                        <span className="text-ink-500 dark:text-ink-400">Open Issues</span>
+                                        <span className={data.issues === 0 ? 'text-brand-700' : 'text-rose-600'}>
+                                            {data.issues} issue{data.issues !== 1 ? 's' : ''}
+                                        </span>
+                                    </div>
+                                )}
+
+                                {'expires' in data && (
+                                    <div className="flex justify-between text-sm">
+                                        <span className="text-ink-500 dark:text-ink-400">Valid Until</span>
+                                        <span className="text-brand-600 dark:text-brand-400">{data.expires}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </Card>
+                    )
+                })}
             </div>
 
-            {/* Data Requests */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2">
-                    <div className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-xl border border-gray-700 p-6">
+                    <Card>
                         <div className="flex items-center justify-between mb-6">
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-2">Data Subject Requests</h3>
-                                <p className="text-gray-400">Recent GDPR/CCPA data requests</p>
+                                <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-2">Data subject requests</h3>
+                                <p className="text-sm text-ink-500 dark:text-ink-300">Recent GDPR/CCPA data requests</p>
                             </div>
                             <div className="text-right">
-                                <p className="text-2xl font-bold text-white">{dataRequests.length}</p>
-                                <p className="text-sm text-gray-400">Active requests</p>
+                                <p className="text-2xl font-bold text-ink-900 dark:text-white">{dataRequests.length}</p>
+                                <p className="text-sm text-ink-500 dark:text-ink-300">Active requests</p>
                             </div>
                         </div>
 
                         <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead className="bg-gray-900/50">
-                                    <tr>
-                                        <th className="text-left p-3 text-gray-300 font-semibold">Request ID</th>
-                                        <th className="text-left p-3 text-gray-300 font-semibold">Type</th>
-                                        <th className="text-left p-3 text-gray-300 font-semibold">User</th>
-                                        <th className="text-left p-3 text-gray-300 font-semibold">Status</th>
-                                        <th className="text-left p-3 text-gray-300 font-semibold">Date</th>
+                            <table className="w-full text-sm">
+                                <thead>
+                                    <tr className="border-b border-ink-200 dark:border-ink-700">
+                                        <th className="text-left p-3 text-ink-500 dark:text-ink-400 font-semibold">Request ID</th>
+                                        <th className="text-left p-3 text-ink-500 dark:text-ink-400 font-semibold">Type</th>
+                                        <th className="text-left p-3 text-ink-500 dark:text-ink-400 font-semibold">User</th>
+                                        <th className="text-left p-3 text-ink-500 dark:text-ink-400 font-semibold">Status</th>
+                                        <th className="text-left p-3 text-ink-500 dark:text-ink-400 font-semibold">Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {dataRequests.map((request) => (
-                                        <tr key={request.id} className="border-t border-gray-700 hover:bg-gray-800/30">
+                                        <tr key={request.id} className="border-b border-ink-50 dark:border-ink-800/50 last:border-b-0">
                                             <td className="p-3">
-                                                <code className="text-cyan-400 font-mono">DSR-{request.id.toString().padStart(4, '0')}</code>
+                                                <code className="text-ink-600 dark:text-ink-300 font-mono">DSR-{request.id.toString().padStart(4, '0')}</code>
                                             </td>
                                             <td className="p-3">
-                                                <span className={`px-3 py-1 rounded-full text-xs capitalize ${request.type === 'access' ? 'bg-blue-900/30 text-blue-400' :
-                                                        request.type === 'deletion' ? 'bg-red-900/30 text-red-400' :
-                                                            request.type === 'export' ? 'bg-green-900/30 text-green-400' :
-                                                                'bg-purple-900/30 text-purple-400'
-                                                    }`}>
+                                                <span className={`px-2 py-0.5 rounded text-xs border ${request.type === 'access' ? 'border-brand-200 text-brand-700 bg-brand-50 dark:border-brand-800/30 dark:bg-brand-900/20' :
+                                                    request.type === 'deletion' ? 'border-rose-200 text-rose-700 bg-rose-50 dark:border-rose-800/30 dark:bg-rose-900/20' :
+                                                        request.type === 'export' ? 'border-emerald-200 text-emerald-700 bg-emerald-50 dark:border-emerald-800/30 dark:bg-emerald-900/20' :
+                                                            'border-ink-200 text-ink-700 bg-ink-50 dark:border-ink-800/30 dark:bg-ink-900/20'
+                                                }`}>
                                                     {request.type}
                                                 </span>
                                             </td>
-                                            <td className="p-3 text-gray-300">{request.user}</td>
+                                            <td className="p-3 text-ink-900 dark:text-white">{request.user}</td>
                                             <td className="p-3">
-                                                <span className={`px-3 py-1 rounded-full text-xs ${request.status === 'completed' ? 'bg-green-900/30 text-green-400' :
-                                                        request.status === 'processing' ? 'bg-yellow-900/30 text-yellow-400' :
-                                                            'bg-gray-900/30 text-gray-400'
-                                                    }`}>
+                                                <span className={`px-2 py-0.5 rounded text-xs border ${request.status === 'completed' ? 'border-brand-200 text-brand-700 bg-brand-50 dark:border-brand-800/30 dark:bg-brand-900/20' :
+                                                    request.status === 'processing' ? 'border-ink-200 text-ink-700 bg-ink-50 dark:border-ink-800/30 dark:bg-ink-900/20' :
+                                                        'border-ink-200 text-ink-500 bg-ink-100 dark:border-ink-700 dark:bg-ink-800'
+                                                }`}>
                                                     {request.status}
                                                 </span>
                                             </td>
-                                            <td className="p-3 text-gray-300">{request.date}</td>
+                                            <td className="p-3 text-ink-900 dark:text-white">{request.date}</td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </Card>
                 </div>
 
-                {/* User Consents */}
                 <div className="space-y-6">
-                    <div className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-xl border border-gray-700 p-6">
+                    <Card>
                         <div className="flex items-center justify-between mb-6">
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-2">User Consents</h3>
-                                <p className="text-gray-400">Consent management overview</p>
+                                <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-2">User consents</h3>
+                                <p className="text-sm text-ink-500 dark:text-ink-300">Consent management overview</p>
                             </div>
-                            <Users className="text-cyan-400" size={24} />
+                            <Users className="text-brand-600" size={24} strokeWidth={1.5} />
                         </div>
 
                         <div className="space-y-4">
                             <div>
                                 <div className="flex justify-between mb-2">
-                                    <span className="text-gray-400">Total Consents</span>
+                                    <span className="text-ink-500 dark:text-ink-400">Total Consents</span>
                                     <span className="text-white font-bold">{userConsents.total.toLocaleString()}</span>
                                 </div>
-                                <div className="w-full bg-gray-800 rounded-full h-2">
-                                    <div
-                                        className="bg-gradient-to-r from-cyan-500 to-blue-600 h-2 rounded-full"
-                                        style={{ width: '100%' }}
-                                    ></div>
+                                <div className="w-full bg-ink-200 dark:bg-ink-800 rounded-full h-2">
+                                    <div className="h-2 rounded-full bg-brand-600" style={{ width: '100%' }}></div>
                                 </div>
                             </div>
 
                             <div>
                                 <div className="flex justify-between mb-2">
-                                    <span className="text-gray-400">Last 30 Days</span>
+                                    <span className="text-ink-500 dark:text-ink-400">Last 30 Days</span>
                                     <span className="text-white font-bold">{userConsents.last30Days.toLocaleString()}</span>
                                 </div>
-                                <div className="w-full bg-gray-800 rounded-full h-2">
+                                <div className="w-full bg-ink-200 dark:bg-ink-800 rounded-full h-2">
                                     <div
-                                        className="bg-gradient-to-r from-green-500 to-emerald-600 h-2 rounded-full"
+                                        className="h-2 rounded-full bg-brand-600"
                                         style={{ width: `${(userConsents.last30Days / userConsents.total) * 100}%` }}
                                     ></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-6 pt-6 border-t border-gray-700">
-                            <h4 className="font-bold text-white mb-3">By Region</h4>
+                        <div className="mt-6 pt-6 border-t border-ink-200 dark:border-ink-700">
+                            <h4 className="font-bold text-ink-900 dark:text-white mb-3">By Region</h4>
                             <div className="space-y-3">
                                 {Object.entries(userConsents.byRegion).map(([region, count]) => (
                                     <div key={region} className="flex justify-between">
-                                        <span className="text-gray-400 capitalize">{region.toUpperCase()}</span>
-                                        <span className="text-white">{count.toLocaleString()}</span>
+                                        <span className="text-ink-500 dark:text-ink-400 capitalize">{region.toUpperCase()}</span>
+                                        <span className="text-ink-900 dark:text-white">{count.toLocaleString()}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </Card>
 
-                    {/* Quick Actions */}
-                    <div className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 rounded-xl border border-blue-800/30 p-6">
-                        <h3 className="text-lg font-bold text-white mb-4">Quick Actions</h3>
+                    <Card>
+                        <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-4">Quick actions</h3>
                         <div className="space-y-3">
-                            <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-cyan-700 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/30 transition-all flex items-center gap-3">
-                                <Database size={18} />
-                                <span>View Data Processing Register</span>
-                            </button>
-                            <button className="w-full px-4 py-3 border border-cyan-400 text-cyan-400 rounded-lg hover:bg-cyan-400/10 transition-all flex items-center gap-3">
-                                <Lock size={18} />
-                                <span>Audit Log Access</span>
-                            </button>
-                            <button className="w-full px-4 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 transition-all flex items-center gap-3">
-                                <TrendingUp size={18} />
-                                <span>Compliance Analytics</span>
-                            </button>
+                            <Button variant="secondary" className="w-full text-left" asChild>
+                                <a href="#" className="flex items-center gap-3">
+                                    <Database size={18} strokeWidth={1.5} />
+                                    <span>View Data Processing Register</span>
+                                </a>
+                            </Button>
+                            <Button variant="secondary" className="w-full text-left" asChild>
+                                <a href="#" className="flex items-center gap-3">
+                                    <Lock size={18} strokeWidth={1.5} />
+                                    <span>Audit Log Access</span>
+                                </a>
+                            </Button>
+                            <Button variant="ghost" className="w-full text-left" asChild>
+                                <a href="#" className="flex items-center gap-3">
+                                    <TrendingUp size={18} strokeWidth={1.5} />
+                                    <span>Compliance Analytics</span>
+                                </a>
+                            </Button>
                         </div>
-                    </div>
+                    </Card>
                 </div>
             </div>
 
-            {/* Compliance Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-gray-700">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="p-3 bg-green-900/30 rounded-lg">
-                            <CheckCircle className="text-green-400" size={24} />
+                {[
+                    { label: 'Compliance Rate', value: '100%', icon: <CheckCircle size={24} strokeWidth={1.5} /> },
+                    { label: 'Response Time', value: '24h', icon: <Clock size={24} strokeWidth={1.5} /> },
+                    { label: 'Certifications', value: '6', icon: <Shield size={24} strokeWidth={1.5} /> },
+                    { label: 'Uptime', value: '99.9%', icon: <TrendingUp size={24} strokeWidth={1.5} /> },
+                ].map((metric, idx) => (
+                    <Card key={idx}>
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="p-3 bg-brand-50 rounded-lg border border-brand-100 dark:bg-brand-900/20 dark:border-brand-800/30">
+                                {metric.icon}
+                            </div>
+                            <span className="text-2xl font-bold text-ink-900 dark:text-white">{metric.value}</span>
                         </div>
-                        <span className="text-2xl font-bold text-white">100%</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">Compliance Rate</h3>
-                    <p className="text-sm text-gray-400">All regulations met</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-gray-700">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="p-3 bg-cyan-900/30 rounded-lg">
-                            <Clock className="text-cyan-400" size={24} />
-                        </div>
-                        <span className="text-2xl font-bold text-white">24h</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">Response Time</h3>
-                    <p className="text-sm text-gray-400">Average DSR response</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-gray-700">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="p-3 bg-blue-900/30 rounded-lg">
-                            <Shield className="text-blue-400" size={24} />
-                        </div>
-                        <span className="text-2xl font-bold text-white">6</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">Certifications</h3>
-                    <p className="text-sm text-gray-400">Active certifications</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-gray-700">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="p-3 bg-purple-900/30 rounded-lg">
-                            <TrendingUp className="text-purple-400" size={24} />
-                        </div>
-                        <span className="text-2xl font-bold text-white">99.9%</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">Uptime</h3>
-                    <p className="text-sm text-gray-400">Compliance monitoring</p>
-                </div>
+                        <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-2">{metric.label}</h3>
+                        <p className="text-sm text-ink-500 dark:text-ink-300">{idx === 0 ? 'All regulations met' : idx === 1 ? 'Average DSR response' : idx === 2 ? 'Active certifications' : 'Compliance monitoring'}</p>
+                    </Card>
+                ))}
             </div>
         </div>
     )

@@ -4,16 +4,9 @@ import Navbar from './Navbar'
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
-      {/* Navbar at the top */}
+    <div className="min-h-screen flex flex-col bg-white text-ink-700 dark:bg-ink-900 dark:text-ink-200">
       <Navbar />
-
-      {/* Main page content */}
-      <main className="flex-grow">
-        {children}
-      </main>
-
-      {/* Footer at the bottom */}
+      <main className="flex-grow">{children}</main>
       <Footer />
     </div>
   )

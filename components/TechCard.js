@@ -1,8 +1,10 @@
+import { Card } from '@/components/ui/Card'
+
 export default function TechCard({ name, detail }) {
     return (
-        <div className="border border-blue-500/40 rounded-2xl p-8 bg-black/40 backdrop-blur-md hover:bg-blue-900/20 transition-all">
-            <h2 className="text-xl font-semibold mb-3 text-blue-400">{name}</h2>
-            <p className="text-gray-300">{detail}</p>
-        </div>
+        <Card>
+            <h3 className="h3 mb-2">{name}</h3>
+            <p className="text-sm text-ink-500 dark:text-ink-300">{detail}</p>
+        </Card>
     )
 }

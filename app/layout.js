@@ -4,28 +4,25 @@ import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import ToastProvider from '@/components/ToastProvider'
 import { ThemeProvider } from '@/context/ThemeContext'
-import { Inter } from 'next/font/google'
+import { Inter, Inter_Tight } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ variable: '--font-inter', subsets: ['latin'] })
+const interTight = Inter_Tight({ variable: '--font-inter-tight', subsets: ['latin'] })
 
 export const metadata = {
     title: {
-        default: 'Techodite - AI & Cybersecurity Solutions',
+        default: 'Techodite - Enterprise AI & Cybersecurity',
         template: '%s | Techodite'
     },
-    description: 'Leading AI and cybersecurity research company providing cutting-edge solutions for businesses. Expert team in machine learning, threat detection, and secure AI development.',
+    description: 'Techodite helps regulated enterprises modernize security operations, deploy production AI, and meet compliance obligations — without slowing delivery.',
     keywords: [
-        'AI research',
-        'cybersecurity',
-        'machine learning',
-        'threat detection',
-        'secure AI',
-        'data privacy',
-        'cyber defense',
-        'artificial intelligence',
-        'cybersecurity solutions',
-        'AI development'
+        'enterprise cybersecurity',
+        'AI security',
+        'compliance',
+        'ISO 27001',
+        'SOC 2',
+        'Techodite'
     ],
     authors: [{ name: 'Techodite Solutions' }],
     creator: 'Techodite Solutions',
@@ -40,8 +37,8 @@ export const metadata = {
         canonical: '/',
     },
     openGraph: {
-        title: 'Techodite - AI & Cybersecurity Solutions',
-        description: 'Leading AI and cybersecurity research company providing cutting-edge solutions for businesses.',
+        title: 'Techodite - Enterprise AI & Cybersecurity',
+        description: 'Techodite helps regulated enterprises modernize security operations, deploy production AI, and meet compliance obligations.',
         url: 'https://techodite.com',
         siteName: 'Techodite',
         images: [
@@ -49,7 +46,7 @@ export const metadata = {
                 url: '/company-logo.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Techodite - AI & Cybersecurity Solutions',
+                alt: 'Techodite - Enterprise AI & Cybersecurity',
             },
         ],
         locale: 'en_US',
@@ -57,8 +54,8 @@ export const metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Techodite - AI & Cybersecurity Solutions',
-        description: 'Leading AI and cybersecurity research company providing cutting-edge solutions for businesses.',
+        title: 'Techodite - Enterprise AI & Cybersecurity',
+        description: 'Techodite helps regulated enterprises modernize security operations, deploy production AI, and meet compliance obligations.',
         images: ['/company-logo.jpg'],
         creator: '@techodite_ai',
     },
@@ -82,8 +79,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body className={`${inter.className} transition-colors duration-300`}>
+        <html
+            lang="en"
+            suppressHydrationWarning
+            style={{
+                fontFamily: [
+                    `var(--font-inter)`,
+                    `var(--font-inter-tight)`,
+                ].join(', '),
+            }}
+        >
+            <body className={`${inter.className} ${interTight.className} font-sans antialiased bg-white text-ink-700 dark:bg-ink-900 dark:text-ink-200 transition-colors duration-300`}>
                 <ThemeProvider>
                     <ToastProvider>
                         <Navbar />

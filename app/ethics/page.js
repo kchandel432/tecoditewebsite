@@ -151,7 +151,7 @@ export default function ResearchEthicsPage() {
                         <Brain className="text-purple-400" size={32} />
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                        AI Research Ethics
+                        AI research ethics
                     </h1>
                     <p className="text-xl text-gray-300 mb-6">
                         Guiding principles for responsible AI and cybersecurity research
@@ -181,7 +181,7 @@ export default function ResearchEthicsPage() {
                             <Heart className="text-purple-400" size={24} />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-bold text-white">Our Ethical Commitment</h2>
+                            <h2 className="text-2xl font-bold text-white">Our ethical commitment</h2>
                             <p className="text-gray-400">Building AI that benefits humanity</p>
                         </div>
                     </div>
@@ -194,7 +194,7 @@ export default function ResearchEthicsPage() {
                                 conception to deployment and beyond.
                             </p>
                             <div className="p-6 bg-gray-900/30 rounded-xl border border-gray-700">
-                                <h3 className="text-lg font-bold text-white mb-3">Core Belief</h3>
+                                <h3 className="text-lg font-bold text-white mb-3">Core belief</h3>
                                 <p className="text-gray-300">
                                     "Technology should empower humanity, not diminish it. AI must be developed with
                                     compassion, foresight, and respect for human dignity."
@@ -242,7 +242,7 @@ export default function ResearchEthicsPage() {
                     transition={{ delay: 0.2 }}
                     className="mb-16"
                 >
-                    <h2 className="text-3xl font-bold text-white mb-8 text-center">Ethical Principles</h2>
+                    <h2 className="text-3xl font-bold text-white mb-8 text-center">Ethical principles</h2>
 
                     <div className="flex overflow-x-auto pb-4 mb-8">
                         <div className="flex space-x-4">
@@ -324,7 +324,7 @@ export default function ResearchEthicsPage() {
                     transition={{ delay: 0.3 }}
                     className="mb-16"
                 >
-                    <h2 className="text-3xl font-bold text-white mb-8 text-center">Ethics Review Process</h2>
+                    <h2 className="text-3xl font-bold text-white mb-8 text-center">Ethics review process</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {reviewProcess.map((stage, idx) => (
@@ -394,11 +394,11 @@ export default function ResearchEthicsPage() {
                     transition={{ delay: 0.5 }}
                     className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
                 >
-                    <h2 className="text-2xl font-bold text-white mb-6">Ethics Committee</h2>
+                    <h2 className="text-2xl font-bold text-white mb-6">Ethics committee</h2>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <h3 className="text-lg font-bold text-white mb-4">Committee Composition</h3>
+                            <h3 className="text-lg font-bold text-white mb-4">Committee composition</h3>
                             <p className="text-gray-300 mb-6">
                                 Our Ethics Committee includes diverse perspectives to ensure comprehensive ethical oversight:
                             </p>
@@ -421,7 +421,7 @@ export default function ResearchEthicsPage() {
                         </div>
 
                         <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl p-6 border border-purple-800/30">
-                            <h3 className="text-lg font-bold text-white mb-4">Contact the Ethics Committee</h3>
+                            <h3 className="text-lg font-bold text-white mb-4">Contact the ethics committee</h3>
                             <p className="text-gray-300 mb-6">
                                 For ethics-related inquiries, research proposals, or concerns:
                             </p>
@@ -455,7 +455,7 @@ export default function ResearchEthicsPage() {
                     className="text-center"
                 >
                     <div className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-2xl p-8 border border-purple-800/30">
-                        <h2 className="text-2xl font-bold text-white mb-6">Join Our Ethical AI Community</h2>
+                        <h2 className="text-2xl font-bold text-white mb-6">Join our ethical AI community</h2>
                         <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
                             Download our ethics guidelines or collaborate with us on responsible AI research.
                         </p>

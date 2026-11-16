@@ -57,7 +57,7 @@ export default function CookiesPage() {
                         <Cookie className="text-green-400" size={32} />
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                        Cookie Management Center
+                        Cookie management center
                     </h1>
                     <p className="text-xl text-gray-300 mb-6">
                         Control your privacy preferences in real-time
@@ -98,7 +98,7 @@ export default function CookiesPage() {
                         className="space-y-8"
                     >
                         <div className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8">
-                            <h2 className="text-2xl font-bold text-white mb-6">Understanding Cookies</h2>
+                            <h2 className="text-2xl font-bold text-white mb-6">Understanding cookies</h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {cookieCategories.map((category) => (

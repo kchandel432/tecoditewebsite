@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { AlertCircle, Code, FileText, Globe, Scale, Shield, UserCheck } from 'lucide-react'
+import { Section } from '@/components/ui/Section'
+import { Card } from '@/components/ui/Card'
 
 export default function TermsAndConditionsPage() {
     const effectiveDate = "January 15, 2024"
@@ -9,22 +10,22 @@ export default function TermsAndConditionsPage() {
     const sections = [
         {
             title: "Acceptance of Terms",
-            icon: <UserCheck className="text-cyan-400" size={24} />,
+            icon: <UserCheck size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             content: "By accessing and using our services, you agree to be bound by these Terms."
         },
         {
             title: "Use of Services",
-            icon: <Code className="text-blue-400" size={24} />,
+            icon: <Code size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             content: "Our services are for lawful purposes only. You agree not to misuse our AI/cybersecurity tools."
         },
         {
             title: "Intellectual Property",
-            icon: <FileText className="text-purple-400" size={24} />,
+            icon: <FileText size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             content: "All research, algorithms, and software are protected by intellectual property laws."
         },
         {
             title: "Limitation of Liability",
-            icon: <AlertCircle className="text-red-400" size={24} />,
+            icon: <AlertCircle size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             content: "We are not liable for indirect damages resulting from service use."
         }
     ]
@@ -60,145 +61,100 @@ export default function TermsAndConditionsPage() {
     ]
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black py-20">
-            <div className="container mx-auto px-6 max-w-4xl">
-                {/* Hero Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-12"
+        <div className="min-h-screen bg-white text-ink-700 dark:bg-ink-900 dark:text-ink-200">
+            <div className="container-mnc py-8 max-w-4xl">
+                <Section
+                    eyebrow="Legal"
+                    title="Terms and Conditions"
+                    intro="Legal agreement governing your use of Techodite services"
                 >
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-2xl mb-6">
-                        <Scale className="text-blue-400" size={32} />
+                    <div className="inline-flex items-center px-3 py-1 rounded-lg border border-ink-200 dark:border-ink-700 bg-ink-50 dark:bg-ink-800/50 text-ink-500 dark:text-ink-400 text-sm font-medium mb-8">
+                        Effective Date: {effectiveDate}
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                        Terms and Conditions
-                    </h1>
-                    <p className="text-xl text-gray-300 mb-6">
-                        Legal agreement governing your use of Techodite services
-                    </p>
-                    <div className="inline-flex items-center px-4 py-2 bg-gray-800/50 rounded-full text-gray-400">
-                        <span>Effective Date: {effectiveDate}</span>
-                    </div>
-                </motion.div>
+                </Section>
 
-                {/* Introduction */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
-                >
+                <Section id="overview" className="scroll-mt-24" eyebrow="Overview"                     title="Agreement overview" intro="Your contract with Techodite">
                     <div className="flex items-center gap-4 mb-6">
-                        <div className="p-3 bg-blue-900/30 rounded-xl">
-                            <Globe className="text-blue-400" size={24} />
+                        <div className="p-2 rounded-lg border border-brand-200 dark:border-brand-800/30 bg-brand-50 dark:bg-brand-900/20 flex-shrink-0">
+                            <Globe size={24} strokeWidth={1.5} className="text-brand-600" />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-bold text-white">Agreement Overview</h2>
-                            <p className="text-gray-400">Your contract with Techodite</p>
+                            <h2 className="text-xl font-bold text-ink-900 dark:text-white">Agreement overview</h2>
+                            <p className="text-ink-500 dark:text-ink-300">Your contract with Techodite</p>
                         </div>
                     </div>
-                    <p className="text-gray-300 mb-6">
+                    <p className="text-ink-500 dark:text-ink-300 mb-6">
                         These Terms and Conditions ("Terms") constitute a legally binding agreement between you
-                        ("User" or "You") and Techodite Research Pvt. Ltd. ("Techodite," "We," "Us," or "Our")
+                        ("User" or "You") and Techodite Solutions Pvt. Ltd. ("Techodite," "We," "Us," or "Our")
                         regarding your access to and use of our AI and cybersecurity research services, software,
                         and related materials (collectively, "Services").
                     </p>
-                    <p className="text-gray-300">
+                    <p className="text-ink-500 dark:text-ink-300">
                         By accessing or using our Services, you acknowledge that you have read, understood, and agree
                         to be bound by these Terms. If you do not agree with these Terms, you must not use our Services.
                     </p>
-                </motion.div>
+                </Section>
 
-                {/* Key Sections */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    {sections.map((section, index) => (
-                        <motion.div
-                            key={section.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 + index * 0.1 }}
-                            className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-xl border border-gray-700 p-6"
-                        >
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="p-3 bg-gray-900/50 rounded-lg">
-                                    {section.icon}
+                <Section id="key-sections" className="scroll-mt-24" eyebrow="Key Sections" title="" intro="">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        {sections.map((section, index) => (
+                            <Card key={section.title}>
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="p-2 rounded-lg border border-ink-200 dark:border-ink-700 bg-ink-50 dark:bg-ink-800/50 flex-shrink-0">
+                                        {section.icon}
+                                    </div>
+                                    <h3 className="text-lg font-bold text-ink-900 dark:text-white">{section.title}</h3>
                                 </div>
-                                <h3 className="text-xl font-bold text-white">{section.title}</h3>
-                            </div>
-                            <p className="text-gray-300">{section.content}</p>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Prohibited Activities */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
-                >
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="p-3 bg-red-900/30 rounded-xl">
-                            <Shield className="text-red-400" size={24} />
-                        </div>
-                        <div>
-                            <h2 className="text-2xl font-bold text-white">Prohibited Activities</h2>
-                            <p className="text-gray-400">Restricted uses of our services</p>
-                        </div>
+                                <p className="text-ink-500 dark:text-ink-300">{section.content}</p>
+                            </Card>
+                        ))}
                     </div>
+                </Section>
 
-                    <p className="text-gray-300 mb-6">
+                <Section id="prohibited" className="scroll-mt-24" eyebrow="Restrictions"                     title="Prohibited activities" intro="Restricted uses of our services">
+                    <p className="text-ink-500 dark:text-ink-300 mb-6">
                         You agree not to engage in any of the following prohibited activities:
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                         {prohibitedActivities.map((activity, index) => (
-                            <div key={index} className="flex items-start p-4 bg-gray-900/30 rounded-lg border border-gray-700">
-                                <AlertCircle className="text-red-400 mr-3 mt-1 flex-shrink-0" size={18} />
-                                <span className="text-gray-300">{activity}</span>
+                            <div key={index} className="flex items-start p-4 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                                <AlertCircle size={18} className="text-rose-600 dark:text-rose-400 mr-3 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                                <span className="text-ink-500 dark:text-ink-300">{activity}</span>
                             </div>
                         ))}
                     </div>
 
-                    <div className="mt-8 p-6 bg-gradient-to-r from-red-900/20 to-orange-900/20 rounded-xl border border-red-800/30">
-                        <h3 className="text-lg font-bold text-white mb-3">Consequences of Violation</h3>
-                        <p className="text-gray-300 mb-3">
+                    <div className="p-6 rounded-lg border border-rose-200 dark:border-rose-800/30 bg-rose-50 dark:bg-rose-900/20">
+                        <h3 className="text-lg font-bold text-rose-900 dark:text-rose-100 mb-3">Consequences of violation</h3>
+                        <p className="text-rose-700 dark:text-rose-300 mb-3">
                             Violation of these Terms may result in:
                         </p>
-                        <ul className="space-y-2 text-gray-300">
-                            <li className="flex items-center">
-                                <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                        <ul className="space-y-2 text-rose-600 dark:text-rose-400">
+                            <li className="flex items-start">
+                                <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                 Immediate termination of your access to Services
                             </li>
-                            <li className="flex items-center">
-                                <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                            <li className="flex items-start">
+                                <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                 Legal action and pursuit of damages
                             </li>
-                            <li className="flex items-center">
-                                <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                            <li className="flex items-start">
+                                <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                 Reporting to law enforcement authorities
                             </li>
-                            <li className="flex items-center">
-                                <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                            <li className="flex items-start">
+                                <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                 Permanent ban from all Techodite services
                             </li>
                         </ul>
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* Intellectual Property */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-6">Intellectual Property Rights</h2>
-
+                <Section id="ip" className="scroll-mt-24" eyebrow="Intellectual Property"                     title="Intellectual property rights" intro="">
                     <div className="mb-8">
-                        <h3 className="text-xl font-bold text-white mb-4">Our Property</h3>
-                        <p className="text-gray-300 mb-6">
+                        <h2 className="text-xl font-bold text-ink-900 dark:text-white mb-4">Our property</h2>
+                        <p className="text-ink-500 dark:text-ink-300 mb-6">
                             All intellectual property rights in the Services, including but not limited to:
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -210,113 +166,97 @@ export default function TermsAndConditionsPage() {
                                 "Trademarks and logos",
                                 "Documentation and manuals"
                             ].map((item, index) => (
-                                <div key={index} className="p-4 bg-gray-900/30 rounded-lg border border-gray-700">
-                                    <p className="text-gray-300">{item}</p>
+                                <div key={index} className="p-4 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                                    <p className="text-ink-500 dark:text-ink-300">{item}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <div>
-                        <h3 className="text-xl font-bold text-white mb-4">Your Content</h3>
-                        <p className="text-gray-300 mb-4">
+                    <div className="mb-8">
+                        <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-4">Your content</h3>
+                        <p className="text-ink-500 dark:text-ink-300 mb-4">
                             You retain ownership of any data, content, or materials you submit to our Services ("User Content").
                             However, by submitting User Content, you grant us a license to use, reproduce, and modify such content
                             solely for the purpose of providing and improving our Services.
                         </p>
-                        <div className="p-6 bg-gray-900/30 rounded-xl">
-                            <h4 className="font-bold text-white mb-3">Research Data Usage</h4>
-                            <p className="text-gray-300">
+                        <div className="p-6 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                            <h4 className="font-bold text-ink-900 dark:text-white mb-3">Research Data Usage</h4>
+                            <p className="text-ink-500 dark:text-ink-300">
                                 For research participation, you grant Techodite a non-exclusive, worldwide, royalty-free license
                                 to use anonymized and aggregated data for AI model training and cybersecurity research purposes.
                             </p>
                         </div>
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* Licensing Options */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-8">Software Licensing</h2>
-
+                <Section id="licensing" className="scroll-mt-24" eyebrow="Licensing"                     title="Software licensing" intro="">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {licenses.map((license, index) => (
-                            <div key={license.type} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl border border-gray-700 p-6">
-                                <h3 className="text-xl font-bold text-white mb-3">{license.type}</h3>
-                                <p className="text-gray-300 text-sm mb-4">{license.description}</p>
+                            <Card key={license.type}>
+                                <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-3">{license.type}</h3>
+                                <p className="text-sm text-ink-500 dark:text-ink-300 mb-4">{license.description}</p>
 
                                 <div className="mb-4">
-                                    <h4 className="text-gray-400 text-sm mb-2">Restrictions:</h4>
+                                    <h4 className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500 dark:text-ink-400 mb-2">Restrictions:</h4>
                                     <ul className="space-y-2">
                                         {license.restrictions.map((restriction, idx) => (
-                                            <li key={idx} className="text-sm text-gray-300 flex items-start">
-                                                <span className="w-1.5 h-1.5 bg-gray-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                                            <li key={idx} className="text-sm text-ink-500 dark:text-ink-300 flex items-start">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-ink-500 mr-2 mt-1.5 flex-shrink-0" />
                                                 {restriction}
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
-                                <div className="pt-4 border-t border-gray-700">
-                                    <p className="text-sm text-gray-400">Duration:</p>
-                                    <p className="text-cyan-400 font-bold">{license.duration}</p>
+                                <div className="pt-4 border-t border-ink-100 dark:border-ink-800">
+                                    <p className="text-sm text-ink-500 dark:text-ink-400">Duration:</p>
+                                    <p className="text-brand-600 dark:text-brand-400 font-bold">{license.duration}</p>
                                 </div>
-                            </div>
+                            </Card>
                         ))}
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* Disclaimer and Limitation of Liability */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-6">Disclaimer and Limitation of Liability</h2>
-
+                <Section id="liability" className="scroll-mt-24" eyebrow="Liability"                     title="Disclaimer and limitation of liability" intro="">
                     <div className="space-y-6">
-                        <div className="p-6 bg-gradient-to-r from-orange-900/20 to-yellow-900/20 rounded-xl border border-orange-800/30">
-                            <h3 className="text-lg font-bold text-white mb-3">No Warranty</h3>
-                            <p className="text-gray-300">
+                        <div className="p-6 rounded-lg border border-amber-200 dark:border-amber-800/30 bg-amber-50 dark:bg-amber-900/20">
+                            <h3 className="text-lg font-bold text-amber-900 dark:text-amber-100 mb-3">No warranty</h3>
+                            <p className="text-amber-700 dark:text-amber-400">
                                 THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND,
                                 EITHER EXPRESS OR IMPLIED. TECHDITE DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO
                                 IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
                             </p>
                         </div>
 
-                        <div className="p-6 bg-gradient-to-r from-red-900/20 to-pink-900/20 rounded-xl border border-red-800/30">
-                            <h3 className="text-lg font-bold text-white mb-3">Limitation of Liability</h3>
-                            <p className="text-gray-300 mb-3">
+                        <div className="p-6 rounded-lg border border-rose-200 dark:border-rose-800/30 bg-rose-50 dark:bg-rose-900/20">
+                            <h3 className="text-lg font-bold text-rose-900 dark:text-rose-100 mb-3">Limitation of liability</h3>
+                            <p className="text-rose-700 dark:text-rose-400 mb-3">
                                 TO THE MAXIMUM EXTENT PERMITTED BY LAW, TECHDITE SHALL NOT BE LIABLE FOR:
                             </p>
-                            <ul className="space-y-2 text-gray-300">
+                            <ul className="space-y-2 text-rose-600 dark:text-rose-400">
                                 <li className="flex items-start">
-                                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                    <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                     Indirect, incidental, special, consequential, or punitive damages
                                 </li>
                                 <li className="flex items-start">
-                                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                    <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                     Loss of profits, revenue, data, or use
                                 </li>
                                 <li className="flex items-start">
-                                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                    <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                     Damages resulting from unauthorized access or alterations
                                 </li>
                                 <li className="flex items-start">
-                                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                    <span className="w-2 h-2 rounded-full bg-rose-500 mr-3 mt-1 flex-shrink-0" />
                                     Any third-party conduct or content
                                 </li>
                             </ul>
                         </div>
 
-                        <div className="p-6 bg-gray-900/30 rounded-xl border border-gray-700">
-                            <h3 className="text-lg font-bold text-white mb-3">Indemnification</h3>
-                            <p className="text-gray-300">
+                        <div className="p-6 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                            <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-3">Indemnification</h3>
+                            <p className="text-ink-500 dark:text-ink-300">
                                 You agree to indemnify, defend, and hold harmless Techodite and its officers, directors,
                                 employees, and agents from and against any claims, liabilities, damages, losses, and expenses
                                 arising out of or in any way connected with your access to or use of the Services, your violation
@@ -324,29 +264,21 @@ export default function TermsAndConditionsPage() {
                             </p>
                         </div>
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* Governing Law */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-6">Governing Law and Dispute Resolution</h2>
-
+                <Section id="governing" className="scroll-mt-24" eyebrow="Governing Law"                     title="Governing law and dispute resolution" intro="">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 className="text-lg font-bold text-white mb-3">Governing Law</h3>
-                            <p className="text-gray-300">
+                        <div className="p-6 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                            <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-3">Governing law</h3>
+                            <p className="text-ink-500 dark:text-ink-300">
                                 These Terms shall be governed by and construed in accordance with the laws of India,
                                 without regard to its conflict of law provisions.
                             </p>
                         </div>
 
-                        <div>
-                            <h3 className="text-lg font-bold text-white mb-3">Dispute Resolution</h3>
-                            <p className="text-gray-300">
+                        <div className="p-6 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                            <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-3">Dispute resolution</h3>
+                            <p className="text-ink-500 dark:text-ink-300">
                                 Any disputes arising from these Terms shall first be attempted to be resolved through
                                 good-faith negotiations. If unresolved, disputes shall be submitted to binding arbitration
                                 in Bazarpati Bhadarpur Burhanpur Madhya Pradesh, India.
@@ -354,21 +286,20 @@ export default function TermsAndConditionsPage() {
                         </div>
                     </div>
 
-                    <div className="mt-6 p-6 bg-gradient-to-r from-blue-900/20 to-cyan-900/20 rounded-xl border border-blue-800/30">
-                        <h3 className="text-lg font-bold text-white mb-3">Contact for Legal Inquiries</h3>
-                        <p className="text-gray-300">
+                    <div className="mt-6 p-6 rounded-lg border border-brand-200 dark:border-brand-800/30 bg-brand-50 dark:bg-brand-900/20">
+                        <h3 className="text-lg font-bold text-brand-900 dark:text-white mb-3">Contact for legal inquiries</h3>
+                        <p className="text-brand-700 dark:text-brand-300 mb-3">
                             For any questions regarding these Terms, please contact our legal department:
                         </p>
-                        <div className="mt-3 text-cyan-400">
+                        <div className="mt-3 text-brand-600 dark:text-brand-400">
                             <p>Email: legal@techodite.com</p>
-                            <p>Address: Legal Department, Techodite Research Pvt. Ltd., Cyber Tower, Sector 67, Noida, UP 201301</p>
+                            <p>Address: Legal Department, Techodite Solutions Pvt. Ltd., Cyber Tower, Sector 67, Noida, UP 201301</p>
                         </div>
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* Update Notice */}
-                <div className="mt-12 p-6 bg-gray-800/30 rounded-xl border border-gray-700">
-                    <p className="text-gray-400 text-center">
+                <div className="mt-12 p-6 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                    <p className="text-ink-500 dark:text-ink-300 text-center">
                         Techodite reserves the right to modify these Terms at any time. We will notify users of
                         material changes via email or through our Services. Your continued use of our Services
                         after such modifications constitutes acceptance of the updated Terms.

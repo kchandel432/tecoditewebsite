@@ -1,7 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { AlertTriangle, Brain, Cpu, Eye, Shield, Zap } from 'lucide-react'
+import { Section } from '@/components/ui/Section'
+import { Card } from '@/components/ui/Card'
+
 
 export default function DisclaimerPage() {
     const lastUpdated = "January 15, 2024"
@@ -9,7 +11,7 @@ export default function DisclaimerPage() {
     const disclaimers = [
         {
             category: "Research Information",
-            icon: <Brain className="text-cyan-400" size={24} />,
+            icon: <Brain size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             points: [
                 "Our AI research is experimental and may contain inaccuracies",
                 "Research findings are subject to peer review and validation",
@@ -19,7 +21,7 @@ export default function DisclaimerPage() {
         },
         {
             category: "Security Services",
-            icon: <Shield className="text-blue-400" size={24} />,
+            icon: <Shield size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             points: [
                 "No cybersecurity solution can provide 100% protection",
                 "Security effectiveness depends on implementation and environment",
@@ -29,7 +31,7 @@ export default function DisclaimerPage() {
         },
         {
             category: "Professional Advice",
-            icon: <Eye className="text-purple-400" size={24} />,
+            icon: <Eye size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             points: [
                 "Information provided is for educational purposes only",
                 "Not a substitute for professional cybersecurity consultation",
@@ -39,7 +41,7 @@ export default function DisclaimerPage() {
         },
         {
             category: "Third-Party Content",
-            icon: <Zap className="text-yellow-400" size={24} />,
+            icon: <Zap size={24} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />,
             points: [
                 "We are not responsible for third-party websites linked from our site",
                 "Third-party product recommendations are not endorsements",
@@ -50,94 +52,59 @@ export default function DisclaimerPage() {
     ]
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black py-20">
-            <div className="container mx-auto px-6 max-w-4xl">
-                {/* Hero Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-12"
+        <div className="min-h-screen bg-white text-ink-700 dark:bg-ink-900 dark:text-ink-200">
+            <div className="container-mnc py-8 max-w-4xl">
+                <Section
+                    eyebrow="Disclaimer"
+                    title="Legal Disclaimer"
+                    intro="Important limitations and disclosures regarding our services"
                 >
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-2xl mb-6">
-                        <AlertTriangle className="text-yellow-400" size={32} />
+                    <div className="inline-flex items-center px-3 py-1 rounded-lg border border-ink-200 dark:border-ink-700 bg-ink-50 dark:bg-ink-800/50 text-ink-500 dark:text-ink-400 text-sm font-medium mb-8">
+                        Last Updated: {lastUpdated}
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                        Legal Disclaimer
-                    </h1>
-                    <p className="text-xl text-gray-300 mb-6">
-                        Important limitations and disclosures regarding our services
-                    </p>
-                    <div className="inline-flex items-center px-4 py-2 bg-gray-800/50 rounded-full text-gray-400">
-                        <span>Last Updated: {lastUpdated}</span>
-                    </div>
-                </motion.div>
+                </Section>
 
-                {/* Warning Banner */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-2xl border border-yellow-800/30 p-8 mb-12"
-                >
-                    <div className="flex items-center gap-4 mb-4">
-                        <AlertTriangle className="text-yellow-400" size={32} />
-                        <h2 className="text-2xl font-bold text-white">Important Notice</h2>
+                <Section id="notice" className="scroll-mt-24" eyebrow="Notice"                     title="Important notice" intro="">
+                    <div className="p-8 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                        <div className="flex items-center gap-4 mb-4">
+                            <AlertTriangle size={32} strokeWidth={1.5} className="text-brand-600 dark:text-brand-400" />
+                            <h2 className="text-xl font-bold text-ink-900 dark:text-white">Important notice</h2>
+                        </div>
+                        <p className="text-ink-500 dark:text-ink-300 mb-4">
+                            This disclaimer outlines important limitations regarding our AI and cybersecurity services.
+                            Please read it carefully before using our services or relying on any information provided.
+                        </p>
+                        <p className="text-ink-500 dark:text-ink-300 font-medium">
+                            By accessing our website or using our services, you acknowledge and agree to this disclaimer.
+                        </p>
                     </div>
-                    <p className="text-gray-300 mb-4">
-                        This disclaimer outlines important limitations regarding our AI and cybersecurity services.
-                        Please read it carefully before using our services or relying on any information provided.
-                    </p>
-                    <p className="text-gray-300 font-medium">
-                        By accessing our website or using our services, you acknowledge and agree to this disclaimer.
-                    </p>
-                </motion.div>
+                </Section>
 
-                {/* Disclaimer Sections */}
-                <div className="space-y-8 mb-12">
-                    {disclaimers.map((disclaimer, index) => (
-                        <motion.div
-                            key={disclaimer.category}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 + index * 0.1 }}
-                            className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-gray-900/50 rounded-xl">
-                                    {disclaimer.icon}
+                <Section id="sections" className="scroll-mt-24" eyebrow="Disclaimers" title="" intro="">
+                    <div className="space-y-8 mb-12">
+                        {disclaimers.map((disclaimer, index) => (
+                            <Card key={disclaimer.category}>
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="p-2 rounded-lg border border-ink-200 dark:border-ink-700 bg-ink-50 dark:bg-ink-800/50 flex-shrink-0">
+                                        {disclaimer.icon}
+                                    </div>
+                                    <h2 className="text-xl font-bold text-ink-900 dark:text-white">{disclaimer.category}</h2>
                                 </div>
-                                <h2 className="text-2xl font-bold text-white">{disclaimer.category}</h2>
-                            </div>
 
-                            <ul className="space-y-4">
-                                {disclaimer.points.map((point, idx) => (
-                                    <li key={idx} className="flex items-start p-4 bg-gray-900/30 rounded-lg">
-                                        <AlertTriangle className="text-yellow-400 mr-3 mt-1 flex-shrink-0" size={18} />
-                                        <span className="text-gray-300">{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* AI-Specific Disclaimers */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
-                >
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="p-3 bg-cyan-900/30 rounded-xl">
-                            <Cpu className="text-cyan-400" size={24} />
-                        </div>
-                        <div>
-                            <h2 className="text-2xl font-bold text-white">AI-Specific Limitations</h2>
-                            <p className="text-gray-400">Important considerations for AI services</p>
-                        </div>
+                                <ul className="space-y-4">
+                                    {disclaimer.points.map((point, idx) => (
+                                        <li key={idx} className="flex items-start p-4 rounded-lg border border-ink-100 dark:border-ink-800 bg-white/50 dark:bg-white/5">
+                                            <AlertTriangle size={18} className="text-brand-600 dark:text-brand-400 mr-3 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                                            <span className="text-ink-500 dark:text-ink-300">{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Card>
+                        ))}
                     </div>
+                </Section>
 
+                <Section id="ai" className="scroll-mt-24" eyebrow="AI Limitations"                     title="AI-specific limitations" intro="Important considerations for AI services">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {[
                             {
@@ -157,25 +124,19 @@ export default function DisclaimerPage() {
                                 content: "AI model performance depends heavily on training data quality and quantity. Results may vary based on input data characteristics."
                             }
                         ].map((item, index) => (
-                            <div key={index} className="p-6 bg-gray-900/30 rounded-xl border border-gray-700">
-                                <h3 className="text-lg font-bold text-white mb-3">{item.title}</h3>
-                                <p className="text-gray-300">{item.content}</p>
+                            <div key={index} className="p-6 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800">
+                                <h3 className="text-lg font-bold text-ink-900 dark:text-white mb-3">{item.title}</h3>
+                                <p className="text-ink-500 dark:text-ink-300">{item.content}</p>
                             </div>
                         ))}
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* Risk Acknowledgement */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="bg-gradient-to-br from-red-900/20 to-orange-900/20 rounded-2xl border border-red-800/30 p-8 mb-12"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-6">Risk Acknowledgement</h2>
+                <Section id="risk" className="scroll-mt-24" eyebrow="Risk"                     title="Risk acknowledgement" intro="">
+                    <div className="p-8 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800 mb-12">
+                        <h2 className="text-xl font-bold text-ink-900 dark:text-white mb-6">Risk acknowledgement</h2>
 
-                    <div className="space-y-4">
-                        <p className="text-gray-300">
+                        <p className="text-ink-500 dark:text-ink-300 mb-6">
                             You acknowledge and agree that using AI and cybersecurity services involves inherent risks, including but not limited to:
                         </p>
 
@@ -188,97 +149,88 @@ export default function DisclaimerPage() {
                                 "Data loss or corruption",
                                 "Evolving cyber threats outpacing defenses"
                             ].map((risk, index) => (
-                                <div key={index} className="flex items-center p-4 bg-gray-900/50 rounded-lg">
-                                    <span className="w-3 h-3 bg-red-500 rounded-full mr-3 flex-shrink-0"></span>
-                                    <span className="text-gray-300">{risk}</span>
+                                <div key={index} className="flex items-center p-4 rounded-lg border border-ink-100 dark:border-ink-800 bg-white/50 dark:bg-white/5">
+                                    <span className="w-3 h-3 rounded-full bg-brand-600 mr-3 flex-shrink-0" />
+                                    <span className="text-ink-500 dark:text-ink-300">{risk}</span>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="mt-6 p-6 bg-black/30 rounded-xl">
-                            <p className="text-gray-300 font-medium">
+                        <div className="mt-6 p-6 rounded-lg border border-ink-200 dark:border-ink-700 bg-ink-900/20">
+                            <p className="text-ink-500 dark:text-ink-300 font-medium">
                                 You assume all risks associated with the use of our services and agree that Techodite
                                 shall not be liable for any damages resulting from these inherent risks.
                             </p>
                         </div>
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* External Research Disclaimer */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8 mb-12"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-6">External Research Disclaimer</h2>
+                <Section id="external" className="scroll-mt-24" eyebrow="Research"                     title="External research disclaimer" intro="">
+                    <div className="p-8 rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800 mb-12">
+                        <h2 className="text-xl font-bold text-ink-900 dark:text-white mb-6">External research disclaimer</h2>
 
-                    <div className="space-y-4">
-                        <p className="text-gray-300">
-                            Techodite collaborates with academic institutions, industry partners, and independent researchers.
-                            While we strive for accuracy and reliability, please note:
-                        </p>
+                        <div className="space-y-4">
+                            <p className="text-ink-500 dark:text-ink-300 mb-4">
+                                Techodite collaborates with academic institutions, industry partners, and independent researchers.
+                                While we strive for accuracy and reliability, please note:
+                            </p>
 
-                        <ul className="space-y-3 text-gray-300">
-                            <li className="flex items-start">
-                                <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                Collaborative research findings represent the views of all involved parties and may not reflect Techodite's official position
-                            </li>
-                            <li className="flex items-start">
-                                <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                Research publications undergo peer review but may contain errors or require corrections
-                            </li>
-                            <li className="flex items-start">
-                                <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                External research data may be subject to different licensing and usage terms
-                            </li>
-                            <li className="flex items-start">
-                                <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                We do not endorse all views expressed in collaborative research publications
-                            </li>
-                        </ul>
+                            <ul className="space-y-3 text-ink-500 dark:text-ink-300">
+                                <li className="flex items-start">
+                                    <span className="w-2 h-2 rounded-full bg-brand-600 mr-3 mt-1 flex-shrink-0" />
+                                    Collaborative research findings represent the views of all involved parties and may not reflect Techodite's official position
+                                </li>
+                                <li className="flex items-start">
+                                    <span className="w-2 h-2 rounded-full bg-brand-600 mr-3 mt-1 flex-shrink-0" />
+                                    Research publications undergo peer review but may contain errors or require corrections
+                                </li>
+                                <li className="flex items-start">
+                                    <span className="w-2 h-2 rounded-full bg-brand-600 mr-3 mt-1 flex-shrink-0" />
+                                    External research data may be subject to different licensing and usage terms
+                                </li>
+                                <li className="flex items-start">
+                                    <span className="w-2 h-2 rounded-full bg-brand-600 mr-3 mt-1 flex-shrink-0" />
+                                    We do not endorse all views expressed in collaborative research publications
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </motion.div>
+                </Section>
 
-                {/* Final Acknowledgement */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                    className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl border border-gray-700 p-8"
-                >
-                    <h2 className="text-2xl font-bold text-white mb-6">Your Acknowledgement</h2>
+                <Section id="acknowledgement" className="scroll-mt-24" eyebrow="Acknowledgement"                     title="Your acknowledgement" intro="">
+                    <div className="p-8 rounded-lg border border-brand-200 dark:border-brand-800/30 bg-brand-50 dark:bg-brand-900/20 mb-6">
+                        <h2 className="text-xl font-bold text-brand-900 dark:text-white mb-6">Your acknowledgement</h2>
 
-                    <div className="p-6 bg-gradient-to-r from-green-900/20 to-emerald-900/20 rounded-xl border border-green-800/30 mb-6">
-                        <p className="text-gray-300 mb-4">
+                        <p className="text-brand-700 dark:text-brand-300 mb-4">
                             By using Techodite's services, you acknowledge that:
                         </p>
-                        <ul className="space-y-3 text-gray-300">
+                        <ul className="space-y-3 text-brand-700 dark:text-brand-300">
                             <li className="flex items-center">
-                                <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                <span className="w-2 h-2 rounded-full bg-brand-600 mr-3" />
                                 You have read and understood this disclaimer in its entirety
                             </li>
                             <li className="flex items-center">
-                                <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                <span className="w-2 h-2 rounded-full bg-brand-600 mr-3" />
                                 You accept the limitations and risks outlined above
                             </li>
                             <li className="flex items-center">
-                                <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                <span className="w-2 h-2 rounded-full bg-brand-600 mr-3" />
                                 You will not hold Techodite liable for damages within the scope of this disclaimer
                             </li>
                             <li className="flex items-center">
-                                <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                <span className="w-2 h-2 rounded-full bg-brand-600 mr-3" />
                                 You will seek professional advice for critical security decisions
                             </li>
                         </ul>
                     </div>
 
                     <div className="text-center">
-                        <p className="text-gray-400">
-                            For questions about this disclaimer, contact: <span className="text-cyan-400">legal@techodite.com</span>
+                        <p className="text-ink-500 dark:text-ink-300">
+                            For questions about this disclaimer, contact:{' '}
+                            <span className="text-brand-600 dark:text-brand-400">legal@techodite.com</span>
                         </p>
                     </div>
-                </motion.div>
+                </Section>
             </div>
         </div>
     )

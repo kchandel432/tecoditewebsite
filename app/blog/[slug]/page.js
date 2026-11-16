@@ -1,6 +1,7 @@
 import { getAllPosts, getPostBySlug } from '@/lib/blogPosts'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { Button } from '@/components/ui/Button'
 
 export async function generateStaticParams() {
     const posts = getAllPosts()
@@ -15,9 +16,13 @@ export function generateMetadata({ params }) {
             description: 'The requested blog post could not be found.',
         }
     }
+    const metaDesc =
+        post.excerpt.length >= 140 && post.excerpt.length <= 160
+            ? post.excerpt
+            : 'Read Techodite\u2019s latest research on enterprise AI security, cybersecurity, compliance, and secure cloud transformation from our engineering team.'
     return {
-        title: post.title,
-        description: post.excerpt,
+        title: `${post.title} — Techodite`,
+        description: metaDesc,
     }
 }
 
@@ -29,63 +34,53 @@ export default function BlogPostPage({ params }) {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-200">
-            <div className="container mx-auto px-6 py-16 max-w-3xl">
-                {/* Back link */}
+        <div className="min-h-screen bg-white text-ink-700 dark:bg-ink-900 dark:text-ink-200">
+            <div className="container-mnc py-16 max-w-3xl">
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors mb-8"
+                    className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium transition-colors mb-8"
                 >
                     ← Back to Blog
                 </Link>
 
-                {/* Header */}
                 <header className="mb-10">
                     <div className="flex items-center gap-2 flex-wrap mb-5">
                         {post.tags?.map((tag) => (
                             <span
                                 key={tag}
-                                className="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-medium border border-cyan-500/20"
+                                className="px-3 py-1 text-xs border border-ink-200 dark:border-ink-700 rounded-lg text-ink-500 dark:text-ink-400 font-medium bg-white dark:bg-ink-800"
                             >
                                 {tag}
                             </span>
                         ))}
                     </div>
 
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                        {post.title}
-                    </h1>
+                    <h1 className="h1 mb-6">{post.title}</h1>
 
-                    <div className="flex items-center gap-4 text-sm text-slate-400 border-b border-slate-700/60 pb-6">
-                        <span className="text-slate-200 font-medium">{post.author}</span>
-                        <span className="text-cyan-500">•</span>
+                    <div className="flex items-center gap-4 text-sm text-ink-500 dark:text-ink-300 border-b border-ink-100 dark:border-ink-800 pb-6">
+                        <span className="text-ink-700 dark:text-ink-200 font-medium">{post.author}</span>
+                        <span className="text-ink-400">•</span>
                         <span>{post.date}</span>
-                        <span className="text-cyan-500">•</span>
+                        <span className="text-ink-400">•</span>
                         <span>{post.readTime}</span>
                     </div>
                 </header>
 
-                {/* Content */}
-                <article className="space-y-6 leading-relaxed text-slate-300 text-lg">
+                <article className="space-y-6 leading-relaxed text-ink-600 dark:text-ink-300 text-lg">
                     {post.content?.map((paragraph, index) => (
                         <p key={index}>{paragraph}</p>
                     ))}
                 </article>
 
-                {/* Footer */}
-                <div className="mt-12 pt-8 border-t border-slate-700/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-slate-400 text-sm">
-                        By <span className="text-slate-200 font-medium">{post.author}</span>
+                <div className="mt-12 pt-8 border-t border-ink-100 dark:border-ink-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p className="text-sm text-ink-500 dark:text-ink-300">
+                        By <span className="text-ink-900 dark:text-white font-medium">{post.author}</span>
                     </p>
-                    <Link
-                        href="/contact"
-                        className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
-                    >
-                        Talk to an Expert
-                    </Link>
+                    <Button asChild>
+                        <a href="/contact">Talk to sales</a>
+                    </Button>
                 </div>
             </div>
         </div>
     )
 }
-

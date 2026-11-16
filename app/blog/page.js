@@ -1,73 +1,64 @@
 import { getAllPosts } from '@/lib/blogPosts'
 import Link from 'next/link'
+import { Section } from '@/components/ui/Section'
+import { Card } from '@/components/ui/Card'
 
 export const metadata = {
-    title: 'Blog',
+    title: 'Blog — Techodite',
     description:
-        'Insights from Techodite on enterprise AI, cybersecurity, compliance, and secure cloud transformation.',
+        'Insights from Techodite on enterprise AI, cybersecurity, compliance, and secure cloud transformation for regulated organizations worldwide, daily.',
 }
 
 export default function BlogIndexPage() {
     const posts = getAllPosts()
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-200">
-            {/* Hero */}
-            <section className="py-16 bg-gradient-to-b from-slate-800/50 to-transparent">
-                <div className="container mx-auto px-6 text-center">
-                    <span className="inline-block bg-gradient-to-r from-cyan-500 to-indigo-500 text-white px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide">
-                        Insights & Research
-                    </span>
-                    <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-4 text-white">
-                        The Techodite Blog
-                    </h1>
-                    <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                        Insights from Techodite on enterprise AI, cybersecurity, compliance, and
-                        secure cloud transformation.
-                    </p>
-                </div>
-            </section>
+        <div className="min-h-screen bg-white text-ink-700 dark:bg-ink-900 dark:text-ink-200">
+            <Section
+                eyebrow="Insights & Research"
+                title="The Techodite Blog"
+                intro="Insights from Techodite on enterprise AI, cybersecurity, compliance, and secure cloud transformation."
+            />
 
-            {/* Posts */}
             <section className="py-16">
-                <div className="container mx-auto px-6">
+                <div className="container-mnc">
                     {posts.length === 0 ? (
                         <div className="text-center py-20">
-                            <p className="text-slate-400">No posts published yet. Check back soon.</p>
+                            <p className="text-ink-500 dark:text-ink-300">No posts published yet. Check back soon.</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {posts.map((post) => (
                                 <Link
                                     key={post.slug}
                                     href={`/blog/${post.slug}`}
-                                    className="group bg-slate-900/50 backdrop-blur border border-slate-700/60 rounded-2xl p-6 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all flex flex-col"
+                                    className="group flex flex-col rounded-xl border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800 p-6 transition-colors hover:border-brand-300 dark:hover:border-brand-700"
                                 >
                                     <div className="flex items-center gap-2 flex-wrap mb-4">
                                         {post.tags?.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="px-2.5 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-medium border border-cyan-500/20"
+                                                className="px-2.5 py-1 text-xs border border-ink-200 dark:border-ink-700 rounded-lg text-ink-500 dark:text-ink-400 font-medium bg-white dark:bg-ink-800"
                                             >
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <h2 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors leading-snug">
+                                    <h2 className="text-xl font-bold text-ink-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors leading-snug">
                                         {post.title}
                                     </h2>
-                                    <p className="text-slate-400 text-sm mb-5 leading-relaxed flex-grow">
+                                    <p className="text-sm text-ink-500 dark:text-ink-300 mb-5 leading-relaxed flex-grow">
                                         {post.excerpt}
                                     </p>
 
-                                    <div className="flex items-center justify-between pt-4 border-t border-slate-700/60 text-xs text-slate-500">
+                                    <div className="mt-auto pt-4 border-t border-ink-100 dark:border-ink-800 text-xs text-ink-400 dark:text-ink-500">
                                         <div className="flex items-center gap-2">
-                                            <span className="text-slate-300">{post.author}</span>
+                                            <span className="text-ink-700 dark:text-ink-300">{post.author}</span>
                                         </div>
-                                        <div className="flex items-center gap-3">
+                                        <div className="mt-2 md:mt-0 flex items-center gap-3">
                                             <span>{post.date}</span>
-                                            <span className="text-cyan-500">•</span>
+                                            <span className="text-ink-400">•</span>
                                             <span>{post.readTime}</span>
                                         </div>
                                     </div>
@@ -80,4 +71,3 @@ export default function BlogIndexPage() {
         </div>
     )
 }
-

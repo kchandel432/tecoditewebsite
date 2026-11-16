@@ -8,3 +8,16 @@ node_modules
 out
 .vercel
 .env*
+
+# Local databases - never commit
+dev.db
+*.db
+*.sqlite
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

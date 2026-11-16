@@ -99,7 +99,7 @@ export default function CookieManager() {
                         <Cookie className="text-cyan-400" size={24} />
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-white">Cookie Manager</h2>
+                        <h2 className="text-2xl font-bold text-white">Cookie manager</h2>
                         <p className="text-gray-400">Manage your cookie preferences in real-time</p>
                     </div>
                 </div>
@@ -200,7 +200,7 @@ export default function CookieManager() {
             {/* Active Cookies List */}
             <div className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-xl border border-gray-700 overflow-hidden">
                 <div className="p-6 border-b border-gray-700">
-                    <h3 className="text-xl font-bold text-white mb-2">Active Cookies</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">Active cookies</h3>
                     <p className="text-gray-400">Cookies currently stored on your device</p>
                 </div>
 
@@ -259,7 +259,7 @@ export default function CookieManager() {
             {/* Summary */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-xl p-6 border border-gray-700">
-                    <h3 className="text-lg font-bold text-white mb-4">Cookie Summary</h3>
+                    <h3 className="text-lg font-bold text-white mb-4">Cookie summary</h3>
                     <div className="space-y-4">
                         <div className="flex justify-between">
                             <span className="text-gray-400">Essential Cookies</span>

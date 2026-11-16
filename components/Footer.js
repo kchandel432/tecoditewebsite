@@ -1,201 +1,102 @@
 'use client'
 
-import {
-  Github,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter
-} from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+
+const columns = [
+    {
+        heading: 'Company',
+        links: [
+            { name: 'About', href: '/about' },
+            { name: 'Case Studies', href: '/case-studies' },
+            { name: 'Investors', href: '/investors' },
+            { name: 'Contact', href: '/contact' },
+        ],
+    },
+    {
+        heading: 'Solutions',
+        links: [
+            { name: 'Technology', href: '/technology' },
+            { name: 'Products', href: '/products' },
+            { name: 'Compliance', href: '/compliance' },
+            { name: 'Security', href: '/security' },
+        ],
+    },
+    {
+        heading: 'Products',
+        links: [
+            { name: 'Malware Scanner', href: '/products/malware-scanner' },
+            { name: 'Web Scanner', href: '/products/web-scanner' },
+        ],
+    },
+    {
+        heading: 'Resources',
+        links: [
+            { name: 'Blog', href: '/blog' },
+            { name: 'Cookie Policy', href: '/cookies' },
+            { name: 'Research Ethics', href: '/ethics' },
+        ],
+    },
+    {
+        heading: 'Legal',
+        links: [
+            { name: 'Privacy Policy', href: '/privacy' },
+            { name: 'Terms & Conditions', href: '/terms' },
+            { name: 'Disclaimer', href: '/disclaimer' },
+        ],
+    },
+]
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
+    return (
+        <footer className="bg-ink-900 text-ink-300 py-16 border-t border-ink-800">
+            <div className="container-mnc">
+                <Link href="/" aria-label="Techodite home" className="inline-flex items-center mb-10">
+                    <img src="/logo.png" alt="Techodite" className="h-8 w-auto brightness-0 invert" />
+                </Link>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
+                    {columns.map((column) => (
+                        <div key={column.heading}>
+                            <h3 className="text-sm font-semibold text-white uppercase tracking-[0.12em] mb-6">
+                                {column.heading}
+                            </h3>
+                            <ul className="space-y-3">
+                                {column.links.map((link) => (
+                                    <li key={link.name}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-ink-400 hover:text-white transition-colors"
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
 
-  const companyInfo = {
-    name: 'Techodite Solutions Pvt Ltd',
-    email: 'techodite@gmail.com',
-    phone: '+91-9753089649',
-    address: 'Bazarpati Bhadarpur Burhanpur Madhya Pradesh',
-    instagram: 'techoditesolutionpvt',
-    linkedin: 'techodite-solutions',
-    twitter: 'techodite_ai',
-    github: 'techodite',
-    youtube: 'techodite',
-    facebook: 'techodite.solutions'
-  }
-
-  const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Research', href: '/research' },
-    { name: 'Products', href: '/products' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Technology', href: '/technology' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-  ]
-
-  return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black border-t border-gray-800">
-      <div className="container mx-auto px-6 py-12">
-        {/* Main Footer */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">T</span>
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-white">Techodite</h2>
-                <p className="text-sm text-gray-400">AI & Cybersecurity Solutions</p>
-              </div>
+                <div className="border-t border-ink-800 pt-6 mt-12 flex flex-col md:flex-row justify-between gap-4 text-xs">
+                    <p className="text-ink-500">
+                        © 2026 Techodite Solutions Pvt. Ltd. All rights reserved.
+                    </p>
+                    <div className="flex items-center gap-6">
+                        <span className="text-ink-500">
+                            ISO 27001&nbsp;&middot;&nbsp;SOC 2&nbsp;&middot;&nbsp;GDPR
+                        </span>
+                        <div className="flex items-center gap-4">
+                            <Link href="/privacy" className="text-ink-400 hover:text-white transition-colors">
+                                Privacy
+                            </Link>
+                            <Link href="/terms" className="text-ink-400 hover:text-white transition-colors">
+                                Terms
+                            </Link>
+                            <Link href="/security" className="text-ink-400 hover:text-white transition-colors">
+                                Security
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <p className="text-gray-300 mb-6">
-              Pioneering the future of secure artificial intelligence through innovative research
-              and cutting-edge technology development.
-            </p>
-
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Mail className="text-cyan-400" size={18} />
-                <a href={`mailto:${companyInfo.email}`} className="text-gray-300 hover:text-cyan-400 transition-colors">
-                  {companyInfo.email}
-                </a>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <Phone className="text-cyan-400" size={18} />
-                <a href={`tel:${companyInfo.phone}`} className="text-gray-300 hover:text-cyan-400 transition-colors">
-                  {companyInfo.phone}
-                </a>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <MapPin className="text-cyan-400 mt-1" size={18} />
-                <p className="text-gray-300">{companyInfo.address}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold text-white mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-cyan-400 mr-0 group-hover:mr-2 transition-all"></span>
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social Media */}
-          <div>
-            <h3 className="text-xl font-bold text-white mb-6">Connect With Us</h3>
-            <p className="text-gray-300 mb-6">
-              Follow us for the latest updates in AI and cybersecurity research.
-            </p>
-
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Follow Us</h4>
-              <div className="flex items-center space-x-4">
-                <a
-                  href={`https://instagram.com/${companyInfo.instagram}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center hover:shadow-lg hover:shadow-pink-500/30 transition-all"
-                >
-                  <Instagram className="text-white" size={20} />
-                </a>
-
-                <a
-                  href={`https://linkedin.com/company/${companyInfo.linkedin}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center hover:shadow-lg hover:shadow-blue-500/30 transition-all"
-                >
-                  <Linkedin className="text-white" size={20} />
-                </a>
-
-                <a
-                  href={`https://twitter.com/${companyInfo.twitter}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
-                >
-                  <Twitter className="text-white" size={20} />
-                </a>
-
-                <a
-                  href={`https://github.com/${companyInfo.github}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:shadow-lg hover:shadow-gray-500/30 transition-all"
-                >
-                  <Github className="text-white" size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Legal & Contact Links */}
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="flex flex-wrap gap-6">
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
-                Terms & Conditions
-              </Link>
-              <Link href="/disclaimer" className="text-gray-400 hover:text-white transition-colors">
-                Disclaimer
-              </Link>
-              <Link href="/cookies" className="text-gray-400 hover:text-white transition-colors">
-                Cookie Policy
-              </Link>
-              <Link href="/security" className="text-gray-400 hover:text-white transition-colors">
-                Security Policy
-              </Link>
-              <Link href="/ethics" className="text-gray-400 hover:text-white transition-colors">
-                Research Ethics
-              </Link>
-              <Link href="/compliance" className="text-gray-400 hover:text-white transition-colors">
-                Compliance
-              </Link>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-400">Registered:</span>
-              <span className="text-white font-medium">Techodite Solutions Pvt Ltd</span>
-              <span className="text-gray-500">|</span>
-              <span className="text-gray-400">CIN: U72900DL2023PTC123456</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Copyright */}
-        <div className="border-t border-gray-800 pt-8 mt-8 text-center">
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} Techodite Solutions Pvt Ltd. All rights reserved.
-          </p>
-          <p className="text-gray-500 text-sm mt-2">
-            Pioneering AI & Cybersecurity Research | ISO 27001 Certified | GDPR Compliant
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
+        </footer>
+    )
 }
